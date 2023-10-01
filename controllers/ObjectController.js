@@ -12,7 +12,20 @@ async function getObjects(req, res) {
     }
 }
 
+async function createObject(req, res) {
+    const { name, activity, address } = req.body;
+    try {
+        await pool.query(
+            "INSERT INTO object(name, activity, address) VALUES (?, ?, ?)",
+            [name, activity, address]
+        );
+        res.redirect("/objects");
+    } catch (error) {
+        res.render("pages/error", { error });
+    }   
+}
 
 module.exports = {
-  getObjects
+    getObjects,
+    createObject
 }
