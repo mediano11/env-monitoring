@@ -4,27 +4,43 @@ const mysql = require('mysql2');
 
 const PORT = 5000;
 const app = express();
-app.use(express.json())
+app.set("view engine", "ejs");
+app.use(express.json());    
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
   host     : process.env.HOST,
   user     : process.env.USER,
   password : process.env.PASSWORD,
   database : process.env.DB
 }).promise();
 
-;
-app.post("/", (req, res) => {
-    res.status(200).json("server works")
+const getObjects = async () => {
+    try {
+        const [rows] = await pool.query("select * frowm object");
+        return rows;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
+
+app.get("/", async (req, res,) => {
+    try {
+        const objects = await getObjects();
+        res.render("pages/index", {
+            objects
+        });
+    } catch (error) {
+        res.render("pages/error", { error });
+    }
+        
 });
 
 const startApp = async () => {
     try {
-        const result = await connection.query("select * from object");
         app.listen(PORT, () => console.log('server started on port: ', PORT));
-        console.log(result)
     } catch (error) {
-        console.log(error);
+        res.render("pages/error", { error });
     }
 }
 
