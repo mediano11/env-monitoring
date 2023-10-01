@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <section class="content">
+            <h1 class="mt-4 mb-3">Industrial objects</h1>
+            <div class="box box-primary" style="margin:5px;padding:5px;">
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Object ID</th>
+                                    <th>Object Title</th>
+                                    <th>Object Activity</th>
+                                    <th>Object Address</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% objects.forEach(function(object) { %>
+                                    <tr>
+                                        <td>
+                                            <%= object.object_id %>
+                                        </td>
+                                        <td>
+                                            <%= object.name %>
+                                        </td>
+                                        <td>
+                                            <%= object.activity %>
+                                        </td>
+                                        <td>
+                                            <%= object.address %>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>
