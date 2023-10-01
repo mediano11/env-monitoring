@@ -21,6 +21,7 @@
                                     <th>Object Title</th>
                                     <th>Object Activity</th>
                                     <th>Object Address</th> 
+                                    <th>Operations</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,6 +38,12 @@
                                         </td>
                                         <td>
                                             <%= object.address %>
+                                        </td>
+                                        <td>
+                                            <a 
+                                                onclick="return alert('Are you sure you want to delete <%= object.object_id %> object?')" 
+                                                href="/objects/delete/<%= object.object_id %>">Delete
+                                            </a>
                                         </td>
                                     </tr>
                                     <% }); %>

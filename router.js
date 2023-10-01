@@ -15,5 +15,6 @@ router.get('/objects/add', (req, res) => {
     })
 });
 router.get('/objects', ObjectController.getObjects);
+router.get('/objects/delete/:id', ObjectController.deleteObject);
 
 module.exports = router;

@@ -25,7 +25,21 @@ async function createObject(req, res) {
     }   
 }
 
+async function deleteObject(req, res) {
+    if (isNaN(+req.params.id)) {
+        return res.redirect("/objects");
+    }
+    let id = req.params.id;
+    try {
+        await pool.query('DELETE FROM object WHERE object_id = ?', [id]);
+        res.redirect("/objects");
+    } catch (error) {
+        res.render("pages/error", { error });
+    }   
+}
+
 module.exports = {
     getObjects,
-    createObject
+    createObject,
+    deleteObject
 }
