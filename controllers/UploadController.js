@@ -28,6 +28,7 @@ async function excelData (req, res) {
                 message: 'Please, choose a file!'
             }
         })
+        return;
     }
     const file = reader.readFile(req.file.destination + req.file.filename);
     let objects = [];
