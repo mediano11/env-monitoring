@@ -2,7 +2,7 @@ const PollutionService = require("../services/PollutionService.js");
 
 async function getPollutions(req, res) {
     try {
-        const pollutions = await PollutionService.getPollutions();
+        const pollutions = await PollutionService.getPollutionsWithName();
         res.render("pages/pollutions/pollutions", {
             pollutions,
         });
