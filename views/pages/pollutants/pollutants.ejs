@@ -2,48 +2,44 @@
 <html lang="en">
 
 <head>
-    <%- include('../partials/head'); %>
+    <%- include('../../partials/head'); %>
 </head>
 <body>
 
-    <%- include('../partials/header'); %>
+    <%- include('../../partials/header'); %>
 
     <main class="container">
         <section class="content">
-            <h1 class="mt-4 mb-3">Industrial objects</h1>
+            <h1 class="mt-4 mb-3">Pollutant</h1>
             <div class="box box-primary" style="margin:5px;padding:5px;">
                 <div class="box-body">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Object ID</th>
-                                    <th>Object Title</th>
-                                    <th>Object Activity</th>
-                                    <th>Object Address</th> 
+                                    <th>Pollutant Code</th>
+                                    <th>Pollutant Name</th>
+                                    <th>GDK</th> 
                                     <th>Operations</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% objects.forEach(function(object) { %>
+                                <% pollutants.forEach(function(pollutant) { %>
                                     <tr>
                                         <td>
-                                            <%= object.object_id %>
+                                            <%= pollutant.pollutant_code %>
                                         </td>
                                         <td>
-                                            <%= object.name %>
+                                            <%= pollutant.pollutant_name %>
                                         </td>
                                         <td>
-                                            <%= object.activity %>
+                                            <%= pollutant.gdk %>
                                         </td>
                                         <td>
-                                            <%= object.address %>
-                                        </td>
-                                        <td>
-                                            <a href="/objects/edit/<%= object.object_id %>">Edit</a>
+                                            <a href="/pollutants/edit/<%= pollutant.pollutant_code %>">Edit</a>
                                             <a 
-                                                onclick="return alert('Are you sure you want to delete <%= object.object_id %> object?')" 
-                                                href="/objects/delete/<%= object.object_id %>">Delete
+                                                onclick="return alert('Are you sure you want to delete <%= pollutant.pollutant_code %> object?')" 
+                                                href="/pollutants/delete/<%= pollutant.pollutant_code %>">Delete
                                             </a>
                                         </td>
                                     </tr>
@@ -56,7 +52,7 @@
             </section>
     </main>
 
-    <%- include('../partials/footer'); %>
+    <%- include('../../partials/footer'); %>
     
 
 </body>

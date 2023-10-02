@@ -1,10 +1,9 @@
-const {pool} = require("../db.js");
-const ObjectService = require("../services/ObjectService.js");
+   const ObjectService = require("../services/ObjectService.js");
 
 async function getObjects(req, res) {
     try {
         const objects = await ObjectService.getObjects();
-        res.render("pages/objects", {
+        res.render("pages/objects/objects", {
             objects,
         });
     } catch (error) {
@@ -16,7 +15,7 @@ async function getObject(req, res) {
     const { id } = req.params;
     try {
         const object = await ObjectService.getObject(id);
-        res.render("pages/edit", { object });
+        res.render("pages/objects/edit", { object });
     } catch (error) {
         res.render("pages/error", { error });
     }
