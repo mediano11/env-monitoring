@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const ObjectController = require("./controllers/ObjectController.js");
 const PollutantController = require("./controllers/PollutantController.js");
 const PollutionController = require("./controllers/PollutionController.js");
+const UploadController = require("./controllers/UploadController.js");
 
 router.get('/', (req, res) => {
     res.render("pages/index");
@@ -33,5 +35,7 @@ router.post('/pollutants/update/:id', PollutantController.updatePollutant);
 router.get('/pollutants/edit/:id', PollutantController.getPollutant);
 
 router.get('/pollutions', PollutionController.getPollutions);
+router.get("/upload",UploadController.uploadExcel)
+router.post("/excel-data", UploadController.upload.single('importexcel'), UploadController.excelData);
 
 module.exports = router;

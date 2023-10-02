@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../partials/header'); %>
+
+        <main class="container ">
+            <div class="row mt-5 p-3" style="background-color:white; border:1px solid white;border-radius:15px;">
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col-6">
+                            <form action="/excel-data" enctype="multipart/form-data" accept=".xlsx, .xls, .csv" method="post">
+                                <input type="file" name="importexcel" class="form-control" />
+                                <br />
+                                <br />
+                                <button type="submit" class="btn btn-primary" value="Store File">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
+
+</body>
+
+</html>
