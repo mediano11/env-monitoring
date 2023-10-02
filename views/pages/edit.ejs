@@ -13,21 +13,21 @@
     
         <div class="card">
             <h1 class="card-header">
-                <%= name %> | Edit
+                <%= object.name %> | Edit
             </h1>
             <div class="card-body">
-                <form action="/objects/update/<%= id %> " method="post">
+                <form action="/objects/update/<%= object.object_id %> " method="post">
                     <div class="form-group">
                         <label>Name:</label>
-                        <input type="text" class="form-control" name="name" value="<%= name %>" autocomplete="off">
+                        <input type="text" class="form-control" name="name" value="<%= object.name %>" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label>Acvity:</label>
-                        <input type="text" class="form-control" name="activity" value="<%= activity %>" autocomplete="off">
+                        <input type="text" class="form-control" name="activity" value="<%= object.activity %>" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label>Address:</label>
-                        <input type="text" class="form-control" name="address" value="<%= address %>" autocomplete="off">
+                        <input type="text" class="form-control" name="address" value="<%= object.address %>" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-info" value="Save" />

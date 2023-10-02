@@ -1,11 +1,11 @@
 const {pool} = require("../db.js");
-
+const ObjectService = require("../services/ObjectService.js");
 
 async function getObjects(req, res) {
     try {
-        const [row] = await  pool.query("select * from object");
+        const objects = await ObjectService.getObjects();
         res.render("pages/objects", {
-            objects: row,
+            objects,
         });
     } catch (error) {
         res.render("pages/error", { error });
@@ -13,31 +13,18 @@ async function getObjects(req, res) {
 }
 
 async function getObject(req, res) {
-    if (isNaN(+req.params.id)) {
-        return res.redirect("/objects");
-    }
-    let id = req.params.id;
+    const { id } = req.params;
     try {
-        const [row] = await pool.query("select * from object where object_id = ?", [id]);
-        const updObj = {
-            id: row[0].object_id,
-            name: row[0].name,
-            activity: row[0].activity,
-            address: row[0].address,
-        };
-        res.render("pages/edit", updObj);
+        const object = await ObjectService.getObject(id);
+        res.render("pages/edit", { object });
     } catch (error) {
         res.render("pages/error", { error });
     }
 }
 
 async function createObject(req, res) {
-    const { name, activity, address } = req.body;
     try {
-        await pool.query(
-            "INSERT INTO object(name, activity, address) VALUES (?, ?, ?)",
-            [name, activity, address]
-        );
+        const newObject = await ObjectService.createObject(req.body)
         res.redirect("/objects");
     } catch (error) {
         res.render("pages/error", { error });
@@ -45,12 +32,9 @@ async function createObject(req, res) {
 }
 
 async function deleteObject(req, res) {
-    if (isNaN(+req.params.id)) {
-        return res.redirect("/objects");
-    }
-    let id = req.params.id;
+    const { id } = req.params;
     try {
-        await pool.query('DELETE FROM object WHERE object_id = ?', [id]);
+        const object = await ObjectService.deleteObject(id);
         res.redirect("/objects");
     } catch (error) {
         res.render("pages/error", { error });
@@ -58,15 +42,9 @@ async function deleteObject(req, res) {
 }
 
 async function updateObject(req, res) {
-    if (isNaN(+req.params.id)) {
-        return res.redirect("/objects");
-    }
-    let id = req.params.id;
-    const { name, activity, address } = req.body;
+    const { id } = req.params;
     try {
-        await pool.query(
-            "UPDATE object set name=?, activity=?, address=? where object_id=?",[name, activity, address, id],
-        );
+        const updatedObject = await ObjectService.updateObject(req.body, id);
         res.redirect("/objects");
     } catch (error) {
         res.render("pages/error", { error });
