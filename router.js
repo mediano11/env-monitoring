@@ -16,5 +16,7 @@ router.get('/objects/add', (req, res) => {
 });
 router.get('/objects', ObjectController.getObjects);
 router.get('/objects/delete/:id', ObjectController.deleteObject);
+router.post('/objects/update/:id', ObjectController.updateObject);
+router.get('/objects/edit/:id', ObjectController.getObject);
 
 module.exports = router;
