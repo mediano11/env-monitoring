@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ObjectController = require("./controllers/ObjectController.js");
 const PollutantController = require("./controllers/PollutantController.js");
+const PollutionController = require("./controllers/PollutionController.js");
 
 router.get('/', (req, res) => {
     res.render("pages/index");
@@ -30,5 +31,7 @@ router.get('/pollutants', PollutantController.getPollutants);
 router.get('/pollutants/delete/:id', PollutantController.deletePollutant);
 router.post('/pollutants/update/:id', PollutantController.updatePollutant);
 router.get('/pollutants/edit/:id', PollutantController.getPollutant);
+
+router.get('/pollutions', PollutionController.getPollutions);
 
 module.exports = router;
