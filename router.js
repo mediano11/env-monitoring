@@ -26,7 +26,7 @@ router.post('/pollutants/add', PollutantController.createPollutant);
 router.get('/pollutants/add', (req, res) => {
     res.render('pages/pollutants/add', {
         pollutant_name: '',
-        gdk: ''
+        gdk: 0
     })
 });
 router.get('/pollutants', PollutantController.getPollutants);
@@ -34,7 +34,11 @@ router.get('/pollutants/delete/:id', PollutantController.deletePollutant);
 router.post('/pollutants/update/:id', PollutantController.updatePollutant);
 router.get('/pollutants/edit/:id', PollutantController.getPollutant);
 
+
 router.get('/pollutions', PollutionController.getPollutions);
+router.post('/pollutions/add', PollutionController.createPollution);
+router.get('/pollutions/add', PollutionController.getCreatePollution);
+
 router.get("/upload",UploadController.uploadExcel)
 router.post("/excel-data", UploadController.upload.single('importexcel'), UploadController.excelData);
 
