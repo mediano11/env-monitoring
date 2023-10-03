@@ -13,41 +13,45 @@
             <h1 class="mt-4 mb-3">Pollutions</h1>
             <div class="box box-primary" style="margin:5px;padding:5px;">
                 <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Pollution ID</th>
-                                    <th>Object Name</th>
-                                    <th>Pollutant Name</th>
-                                    <th>Pollutant Value</th>
-                                    <th>DATE</th> 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% pollutions.forEach(function(pollution) { %>
+                    <% if (pollutions.length===0) { %>
+                        <p class="text-center fs-3">Pollutions list is empty!</p>
+                    <% } else { %>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <%= pollution.pollution_id %>
-                                        </td>
-                                        <td>
-                                            <%= pollution.object_name %>
-                                        </td>
-                                        <td>
-                                            <%= pollution.pollutant_name %>
-                                        </td>
-                                        <td>
-                                            <%= pollution.pollutant_value %>
-                                        </td>
-                                        <td>
-                                            <%= pollution.date %>
-                                        </td>
+                                        <th>Pollution ID</th>
+                                        <th>Object Name</th>
+                                        <th>Pollutant Name</th>
+                                        <th>Pollutant Value</th>
+                                        <th>DATE</th> 
                                     </tr>
-                                    <% }); %>
-            
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    <% pollutions.forEach(function(pollution) { %>
+                                        <tr>
+                                            <td>
+                                                <%= pollution.pollution_id %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.object_name %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.pollutant_name %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.pollutant_value %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.date %>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } %>
                 </div>
             </section>
     </main>

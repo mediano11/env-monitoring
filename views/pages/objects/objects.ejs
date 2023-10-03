@@ -13,45 +13,49 @@
             <h1 class="mt-4 mb-3">Industrial objects</h1>
             <div class="box box-primary" style="margin:5px;padding:5px;">
                 <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Object ID</th>
-                                    <th>Object Title</th>
-                                    <th>Object Activity</th>
-                                    <th>Object Address</th> 
-                                    <th>Operations</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% objects.forEach(function(object) { %>
+                    <% if (objects.length === 0) { %>
+                        <p class="text-center fs-3">Object list is empty!</p>
+                    <% } else { %>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <%= object.object_id %>
-                                        </td>
-                                        <td>
-                                            <%= object.name %>
-                                        </td>
-                                        <td>
-                                            <%= object.activity %>
-                                        </td>
-                                        <td>
-                                            <%= object.address %>
-                                        </td>
-                                        <td>
-                                            <a href="/objects/edit/<%= object.object_id %>">Edit</a>
-                                            <a 
-                                                onclick="return alert('Are you sure you want to delete <%= object.object_id %> object?')" 
-                                                href="/objects/delete/<%= object.object_id %>">Delete
-                                            </a>
-                                        </td>
+                                        <th>Object ID</th>
+                                        <th>Object Title</th>
+                                        <th>Object Activity</th>
+                                        <th>Object Address</th> 
+                                        <th>Operations</th>
                                     </tr>
-                                    <% }); %>
-            
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    <% objects.forEach(function(object) { %>
+                                        <tr>
+                                            <td>
+                                                <%= object.object_id %>
+                                            </td>
+                                            <td>
+                                                <%= object.name %>
+                                            </td>
+                                            <td>
+                                                <%= object.activity %>
+                                            </td>
+                                            <td>
+                                                <%= object.address %>
+                                            </td>
+                                            <td>
+                                                <a href="/objects/edit/<%= object.object_id %>">Edit</a>
+                                                <a 
+                                                    onclick="return alert('Are you sure you want to delete <%= object.object_id %> object?')" 
+                                                    href="/objects/delete/<%= object.object_id %>">Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } %>
                 </div>
             </section>
     </main>
