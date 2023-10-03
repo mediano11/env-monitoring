@@ -13,7 +13,13 @@ async function getObject(id) {
     const [row] = await pool.query("select * from object where object_id = ?", [id]);
     return row[0];
 }
-
+async function getObjectId(name) {
+    const [row] = await pool.query("select object_id from object where name = ?", [name]);
+    if (row.length === 0) {
+        return null;
+    }   
+    return row[0].object_id;
+}
 async function createObject(object) {
     const { name, activity, address } = object;
     const [row] = await pool.query(
@@ -21,7 +27,6 @@ async function createObject(object) {
         [name, activity, address]
     );
     return row[0];
-   
 }
 
 async function deleteObject(id) {
@@ -46,5 +51,6 @@ module.exports = {
     getObject,
     createObject,
     deleteObject,
-    updateObject
+    updateObject,
+    getObjectId
 }

@@ -55,19 +55,48 @@ async function excelData (req, res) {
 
     try {
         for (const object of objects) {
-            const newObject = await ObjectService.createObject(object);
+            try {
+                const newObject = await ObjectService.createObject(object);
+            } catch (error) {
+                if (error.errno === 1062) {
+                    console.error(`Object ${object.name} already added.`);
+                    continue;
+                }  
+            }
         }
-        for (const pollutant of pollutants) {
-            const newPollutant = await PollutantService.createPollutant(pollutant);
+        for (const pollutant of pollutants) {     
+            try {
+                const newPollutant = await PollutantService.createPollutant(pollutant);
+            } catch (error) {
+                if (error.errno === 1062) {
+                    console.error(`Pollutant ${pollutant.pollutant_name} already added.`);
+                    continue;
+                }
+            }
         }
         for (const pollution of pollutions) {
-            const { object_id, pollutant_code, pollutant_value, date } = pollution;
-            const newPollution = await pool.query("INSERT INTO pollution(object_id, pollutant_code, pollutant_value, date) VALUES (?, ?, ?, ?)", [object_id, pollutant_code, pollutant_value, date]
-            );
+            const { object_name, pollutant_name, pollutant_value, date } = pollution;
+            const pollutant_code = await PollutantService.getPollutantId(pollutant_name);
+
+            if (pollutant_code === null) {
+                console.error(`Pollutant not found: ${pollutant_name}`);
+                continue;
+            }
+
+            const object_id = await ObjectService.getObjectId(object_name);
+            if (object_id === null) {
+                console.error(`Object not found: ${object_name}`);
+                continue;
+            }
+
+            const newPollution = await PollutionService.createPollution({ object_id, pollutant_code, pollutant_value, date });
         }
         res.redirect("/objects");
         
     } catch (error) {
+        if (error.erno === 1062) {
+            return;
+        }
         res.render("pages/error", { error });
     }
 };

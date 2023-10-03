@@ -10,7 +10,7 @@ const config = {
 }
 
 const pool = mysql.createPool(config.db);
-
+pool.query('SET FOREIGN_KEY_CHECKS=OFF;');
 module.exports = {
   pool
 }

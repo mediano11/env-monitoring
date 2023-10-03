@@ -15,7 +15,15 @@ async function getPollutionsWithName() {
     return row;
 }
 
+async function createPollution(pollution) {
+    const { object_id, pollutant_code, pollutant_value, date } = pollution;
+    const [row] = await pool.query("INSERT INTO pollution(object_id, pollutant_code, pollutant_value, date) VALUES (?, ?, ?, ?)", [object_id, pollutant_code, pollutant_value, date]
+    );
+    return row[0];
+}
+
 module.exports = {
     getPollutions,
-    getPollutionsWithName
+    getPollutionsWithName,
+    createPollution
 }

@@ -14,6 +14,14 @@ async function getPollutant(id) {
     return row[0];
 }
 
+async function getPollutantId(name) {
+    const [row] = await pool.query("select pollutant_code from pollutant where pollutant_name = ?", [name]);
+    if (row.length === 0) {
+        return null;
+    } 
+    return row[0].pollutant_code;
+}
+
 async function createPollutant(pollutant) {
     const { pollutant_name, gdk } = pollutant;
     const [row] = await pool.query(
@@ -21,7 +29,6 @@ async function createPollutant(pollutant) {
         [pollutant_name, gdk]
     );
     return row[0];
-   
 }
 
 async function deletePollutant(id) {
@@ -46,5 +53,6 @@ module.exports = {
     deletePollutant,
     updatePollutant,
     getPollutant,
-    getPollutants
+    getPollutants,
+    getPollutantId
 }
