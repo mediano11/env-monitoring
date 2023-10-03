@@ -12,6 +12,23 @@ async function getPollutions(req, res) {
         res.render("pages/error", { error });
     }
 }
+
+async function getPollution(req, res) {
+    const { id } = req.params;
+    try {
+        const pollution = await PollutionService.getPollutionWithName(id);
+        const pollutants = await PollutantService.getPollutants();
+        const objects = await ObjectService.getObjects();
+        res.render("pages/pollutions/edit", {
+            pollution,
+            pollutants,
+            objects      
+        });
+    } catch (error) {
+        res.render("pages/error", { error });
+    }
+}
+
 async function createPollution(req, res) {
     try {
         const newPollution = await PollutionService.createPollution(req.body);
@@ -32,9 +49,32 @@ async function getCreatePollution(req, res) {
     })
 }
 
+async function deletePollution(req, res) {
+    const { id } = req.params;
+    try {
+        const pollution = await PollutionService.deletePollution(id);
+        res.redirect("/pollutions");
+    } catch (error) {
+        res.render("pages/error", { error });
+    }   
+}
+
+async function updatePollution(req, res) {
+    const { id } = req.params;
+    try {
+        const updatedPollution = await PollutionService.updatePollution(req.body, id);
+        res.redirect("/pollutions");
+    } catch (error) {
+        res.render("pages/error", { error });
+    }   
+}
+
 
 module.exports = {
     getPollutions,
     createPollution,
-    getCreatePollution
+    getCreatePollution,
+    deletePollution,
+    updatePollution,
+    getPollution
 }

@@ -25,6 +25,7 @@
                                         <th>Pollutant Name</th>
                                         <th>Pollutant Value</th>
                                         <th>DATE</th> 
+                                        <th>Operations</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,6 +45,12 @@
                                             </td>
                                             <td>
                                                 <%= pollution.date %>
+                                            </td>
+                                            <td>
+                                                <a href="/pollutions/edit/<%= pollution.pollution_id %>">Edit</a>
+                                                <a onclick="return alert('Are you sure you want to delete <%= pollution.pollution_id %> pollution?')"
+                                                    href="/pollutions/delete/<%= pollution.pollution_id %>">Delete
+                                                </a>
                                             </td>
                                         </tr>
                                         <% }); %>
