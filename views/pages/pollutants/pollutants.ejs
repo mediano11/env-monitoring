@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body>
+
+    <%- include('../../partials/header'); %>
+
+    <main class="container">
+        <section class="content">
+            <h1 class="mt-4 mb-3">Pollutant</h1>
+            <div class="box box-primary" style="margin:5px;padding:5px;">
+                <div class="box-body">
+                    <% if (pollutants.length===0) { %>
+                        <p class="text-center fs-3">Pollutants list is empty!</p>
+                    <% } else { %>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Pollutant Code</th>
+                                        <th>Pollutant Name</th>
+                                        <th>GDK</th> 
+                                        <th>Operations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% pollutants.forEach(function(pollutant) { %>
+                                        <tr>
+                                            <td>
+                                                <%= pollutant.pollutant_code %>
+                                            </td>
+                                            <td>
+                                                <%= pollutant.pollutant_name %>
+                                            </td>
+                                            <td>
+                                                <%= pollutant.gdk %>
+                                            </td>
+                                            <td>
+                                                <a href="/pollutants/edit/<%= pollutant.pollutant_code %>">Edit</a>
+                                                <a 
+                                                    onclick="return alert('Are you sure you want to delete <%= pollutant.pollutant_code %> pollutant?')" 
+                                                    href="/pollutants/delete/<%= pollutant.pollutant_code %>">Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+    </main>
+
+    <%- include('../../partials/footer'); %>
+    
+
+</body>
+
+</html>

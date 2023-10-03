@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+    <%- include('../partials/header'); %>
+
+    <main class="container ">
+        <div class="col-md-12 text-center">
+            <h1 class="mt-4 mb-3">Menu</h1>
+            <div class="list-group list-group-flush">
+                <a href="/objects" class="list-group-item list-group-item-action">Objects</a>
+                <a href="/objects/add" class="list-group-item list-group-item-action">Add object</a>
+                <a href="/pollutants" class="list-group-item list-group-item-action">Pollutants</a>
+                <a href="/pollutants/add" class="list-group-item list-group-item-action">Add pollutant</a>
+                <a href="/pollutions" class="list-group-item list-group-item-action">Pollutions</a>
+                <a href="/pollutions/add" class="list-group-item list-group-item-action">Add pollution</a>
+                <a href="/upload" class="list-group-item list-group-item-action">Upload</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

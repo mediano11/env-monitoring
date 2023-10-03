@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body>
+
+    <%- include('../../partials/header'); %>
+
+    <main class="container">
+        <section class="content">
+            <h1 class="mt-4 mb-3">Pollutions</h1>
+            <div class="box box-primary" style="margin:5px;padding:5px;">
+                <div class="box-body">
+                    <% if (pollutions.length===0) { %>
+                        <p class="text-center fs-3">Pollutions list is empty!</p>
+                    <% } else { %>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Pollution ID</th>
+                                        <th>Object Name</th>
+                                        <th>Pollutant Name</th>
+                                        <th>Pollutant Value</th>
+                                        <th>DATE</th> 
+                                        <th>Operations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% pollutions.forEach(function(pollution) { %>
+                                        <tr>
+                                            <td>
+                                                <%= pollution.pollution_id %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.object_name %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.pollutant_name %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.pollutant_value %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.date %>
+                                            </td>
+                                            <td>
+                                                <a href="/pollutions/edit/<%= pollution.pollution_id %>">Edit</a>
+                                                <a onclick="return alert('Are you sure you want to delete <%= pollution.pollution_id %> pollution?')"
+                                                    href="/pollutions/delete/<%= pollution.pollution_id %>">Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+    </main>
+
+    <%- include('../../partials/footer'); %>
+    
+
+</body>
+
+</html>

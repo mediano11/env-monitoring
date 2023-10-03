@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+    
+    <%- include('../../partials/header'); %>
+
+    <main class="container">
+    
+        <div class="card">
+            <h1 class="card-header">
+                Add Pollutant
+            </h1>
+            <div class="card-body">
+                <form action="/pollutants/add" method="post">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" name="pollutant_name" value="<%= pollutant_name %>" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label>GDK:</label>
+                        <input type="number" min="0" max="999" step="any" class="form-control" name="gdk" value="<%= gdk %>" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-info mt-3" value="Add" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

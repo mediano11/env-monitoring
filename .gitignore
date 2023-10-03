@@ -1,0 +1,14 @@
+# dependencies
+/node_modules
+
+# dev env
+.vscode
+/vscode
+
+.env
+
+
+.xlsx
+.sql
+
+/uploads
