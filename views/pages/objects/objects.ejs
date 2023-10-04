@@ -45,7 +45,7 @@
                                             <td>
                                                 <a href="/objects/edit/<%= object.object_id %>">Edit</a>
                                                 <a 
-                                                    onclick="return alert('Are you sure you want to delete <%= object.object_id %> object?')" 
+                                                    onclick="return confirm('Are you sure you want to delete <%= object.object_id %> object?')" 
                                                     href="/objects/delete/<%= object.object_id %>">Delete
                                                 </a>
                                             </td>

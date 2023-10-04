@@ -48,7 +48,7 @@
                                             </td>
                                             <td>
                                                 <a href="/pollutions/edit/<%= pollution.pollution_id %>">Edit</a>
-                                                <a onclick="return alert('Are you sure you want to delete <%= pollution.pollution_id %> pollution?')"
+                                                <a onclick="return confirm('Are you sure you want to delete <%= pollution.pollution_id %> pollution?')"
                                                     href="/pollutions/delete/<%= pollution.pollution_id %>">Delete
                                                 </a>
                                             </td>
