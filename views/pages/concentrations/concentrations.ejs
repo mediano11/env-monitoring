@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body>
+
+    <%- include('../../partials/header'); %>
+
+    <main class="container">
+        <section class="content">
+            <h1 class="mt-4 mb-3">Concentrations</h1>
+            <div class="box box-primary" style="margin:5px;padding:5px;">
+                <div class="box-body">
+                    <% if (concentrations.length===0) { %>
+                        <p class="text-center fs-3">Concentrations list is empty!</p>
+                    <% } else { %>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Concentration ID</th>
+                                        <th>Object Name</th>
+                                        <th>Pollutant Name</th>
+                                        <th>Pollutant Concentration Value</th>
+                                        <th>Operations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% concentrations.forEach(function(concentration) { %>
+                                        <tr>
+                                            <td>
+                                                <%= concentration.concentration_id %>
+                                            </td>
+                                            <td>
+                                                <%= concentration.object_name %>
+                                            </td>
+                                            <td>
+                                                <%= concentration.pollutant_name %>
+                                            </td>
+                                            <td>
+                                                <%= concentration.concentration_value %>
+                                            </td>
+                                            <td>
+                                                <a href="/concentrations/edit/<%= concentration.concentration_id %>">Edit</a>
+                                                <a onclick="return confirm('Are you sure you want to delete <%= concentration.concentration_id %> concentration?')"
+                                                    href="/concentrations/delete/<%= concentration.concentration_id %>">Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+    </main>
+
+    <%- include('../../partials/footer'); %>
+    
+
+</body>
+
+</html>

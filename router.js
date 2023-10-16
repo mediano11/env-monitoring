@@ -4,6 +4,7 @@ const router = express.Router();
 const ObjectController = require("./controllers/ObjectController.js");
 const PollutantController = require("./controllers/PollutantController.js");
 const PollutionController = require("./controllers/PollutionController.js");
+const ConcentrationController = require("./controllers/ConcentrationController.js");
 const UploadController = require("./controllers/UploadController.js");
 
 //index
@@ -47,6 +48,15 @@ router.get('/pollutions/add', PollutionController.getCreatePollution);
 router.get('/pollutions/delete/:id', PollutionController.deletePollution);
 router.post('/pollutions/update/:id', PollutionController.updatePollution);
 router.get('/pollutions/edit/:id', PollutionController.getPollution);
+
+
+//concentrations
+router.get('/concentrations', ConcentrationController.getConcentrations);
+router.post('/concentrations/add', ConcentrationController.createConcentration);
+router.get('/concentrations/add', ConcentrationController.getCreateConcentration);
+router.get('/concentrations/delete/:id', ConcentrationController.deleteConcentration);
+router.post('/concentrations/update/:id', ConcentrationController.updateConcentration);
+router.get('/concentrations/edit/:id', ConcentrationController.getConcentration);
 
 //upload
 router.get("/upload",UploadController.uploadExcel)
