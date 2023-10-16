@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <form action="/pollutions/update/<%= pollution.pollution_id %>" method="post">
                         <div class="form-group">
-                            <label class="my-1 mr-2" for="object_id">Pollutant name</label>
+                            <label class="my-1 mr-2" for="object_id">Object name</label>
                             <select class="custom-select my-1 mr-sm-2 form-control" id="object_id" name="object_id">
                                 <option value="<%= pollution.object_id %>" selected><%= pollution.object_name %></option>
                                 <% objects.forEach(function(object) { %>
