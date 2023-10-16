@@ -58,6 +58,9 @@ router.get('/concentrations/delete/:id', ConcentrationController.deleteConcentra
 router.post('/concentrations/update/:id', ConcentrationController.updateConcentration);
 router.get('/concentrations/edit/:id', ConcentrationController.getConcentration);
 
+router.get('/concentrations/calculate_risk/:id', ConcentrationController.getCalculateRisk);
+router.post('/concentrations/calculate_risk/:id', ConcentrationController.postCalculateRisk);
+
 //upload
 router.get("/upload",UploadController.uploadExcel)
 router.post("/excel-data", UploadController.upload.single('importexcel'), UploadController.excelData);

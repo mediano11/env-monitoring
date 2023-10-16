@@ -24,6 +24,7 @@
                                         <th>Object Name</th>
                                         <th>Pollutant Name</th>
                                         <th>Pollutant Concentration Value</th>
+                                        <th>Calculations</th>
                                         <th>Operations</th>
                                     </tr>
                                 </thead>
@@ -41,6 +42,9 @@
                                             </td>
                                             <td>
                                                 <%= concentration.concentration_value %>
+                                            </td>
+                                            <td>
+                                                <a href="/concentrations/calculate_risk/<%= concentration.concentration_id %>">Calulate risk</a>
                                             </td>
                                             <td>
                                                 <a href="/concentrations/edit/<%= concentration.concentration_id %>">Edit</a>
