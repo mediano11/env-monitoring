@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body>
+
+    <%- include('../../partials/header'); %>
+
+    <main class="container">
+        <a href="/concentrations" class="btn btn-outline-info my-3">
+            Go back
+        </a>
+        <section class="content">
+            <h1 class="py-3">
+                Calculate risk for <%= risk.pollutant_name %> | <%= risk.object_name %>
+            </h1>
+            <div class="box box-primary" style="margin:5px;padding:5px;">
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th>Середня
+                                    добова дози речовини</th>
+                                    <th>Величина індивідуального ризику</th>
+                                    <th>Величина популяційного ризику</th>
+                                    <th>Коефіцієнт небезпеки</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p><%= risk.add_ladd %></p>
+                                        <a href="/concentrations/<%= risk.concentration_id %>/calculate_risk/add_ladd">Calulate risk</a>
+                                    </td>
+                                    <td>
+                                        <p><%= risk.cr %></p>
+                                        <a href="/concentrations/<%= risk.concentration_id %>/calculate_risk/cr">Calulate risk</a>
+                                    </td>
+                                    <td>
+                                        <p><%= risk.pcr %></p>
+                                        <a href="/concentrations/<%= risk.concentration_id %>/calculate_risk/pcr">Calulate risk</a>
+                                    </td>
+                                    <td>
+                                        <p><%= risk.hq %></p>
+                                        <a href="/concentrations/<%= risk.concentration_id %>/calculate_risk/hq">Calulate risk</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <%- include('../../partials/footer'); %>
+    
+
+</body>
+
+</html>

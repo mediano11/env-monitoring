@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+        <main class="container">
+            <a href="/concentrations/<%= risk.concentration_id %>/risks" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate risk for <%= risk.pollutant_name %> | <%= risk.object_name %>
+            </h1>
+            <div class="card">
+                <h1 class="card-header">
+                    Розрахунок індивідуального канцерогенного ризику
+                </h1>
+                <div class="card-body">
+                    <div style="white-space-collapse: preserve; text-align: center">CR = LADD * SF</div>
+                    <form action="/concentrations/<%= risk.concentration_id %>/calculate_risk/cr" method="post" class="row">
+                        <div class="form-group d-none">
+                            <label>Concentratiod id:</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                value="<%= risk.concentration_id %>" autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>LADD, середня добова доза протягом життя, мг/(кг * доба)</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="add_ladd" value="<%= risk.add_ladd %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>SF, фактор нахилу, (мг/(кг * доба))^-1</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="sf" value="<%= sf %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                        </div>
+                    </form>
+                    <div class="alert alert-info mt-2" role="alert">
+                        CR = <%= cr %>, індивідуальний канцерогенний ризик
+                    </div>
+                </div> 
+            </div>
+
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

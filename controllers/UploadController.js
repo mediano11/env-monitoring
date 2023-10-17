@@ -15,7 +15,7 @@ const upload = multer({storage});
 const ObjectService = require("../services/ObjectService.js");
 const PollutantService = require("../services/PollutantService.js");
 const PollutionService = require("../services/PollutionService.js");
-
+const ConcentrationService = require("../services/ConcentrationService.js");
 
 async function uploadExcel(req, res){
     res.render("pages/upload");
@@ -34,6 +34,7 @@ async function excelData (req, res) {
     let objects = [];
     let pollutants = [];
     let pollutions = [];
+    let concentrations = [];
 
     const tabs = file.SheetNames;
     for (const tab of tabs) {
@@ -47,6 +48,9 @@ async function excelData (req, res) {
                 break;
             case 'pollution':
                 pollutions.push(...temp);
+                break;
+            case 'pollutant_concentration':
+                concentrations.push(...temp)
                 break;
             default:
                 break;
@@ -90,6 +94,23 @@ async function excelData (req, res) {
             }
 
             const newPollution = await PollutionService.createPollution({ object_id, pollutant_code, pollutant_value, date });
+        }
+        for (const concentration of concentrations) {
+            const { object_name, pollutant_name, concentration_value } = concentration;
+            const pollutant_code = await PollutantService.getPollutantId(pollutant_name);
+
+            if (pollutant_code === null) {
+                console.error(`Pollutant not found: ${pollutant_name}`);
+                continue;
+            }
+
+            const object_id = await ObjectService.getObjectId(object_name);
+            if (object_id === null) {
+                console.error(`Object not found: ${object_name}`);
+                continue;
+            }
+
+            const newConcentration = await ConcentrationService.createConcentration({ object_id, pollutant_code, concentration_value });
         }
         res.redirect("/objects");
         
