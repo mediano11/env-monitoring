@@ -28,12 +28,13 @@
                                 value="<%= risk.concentration_id %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>CR:</label>
+                            <label>CR, індивідуальний канцерогенний ризик</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="cr" value="<%= risk.cr %>"
                                 autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>POP:</label>
+                            <label>POP, чисельність популяції, що підпадає під вплив даного
+                            фактора, чол</label>
                             <input type="number" min="0" step="any" class="form-control" name="pop" value="<%= pop %>"
                                 autocomplete="off">
                         </div>
@@ -42,7 +43,7 @@
                         </div>
                     </form>
                     <div class="alert alert-info mt-2" role="alert">
-                        PCR = <%= pcr %>
+                        PCR = <%= pcr %>, популяційного канцерогенний ризик
                     </div>
                 </div> 
             </div>

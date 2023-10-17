@@ -34,47 +34,47 @@
                                 value="<%= risk.concentration_id %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>Ca:</label>
+                            <label>Ca, концентрація речовини в атмосферному повітрі, мг/куб.м</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="ca"
                                 value="<%= ca %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>Ch:</label>
+                            <label>Ch, концентрація речовини у повітрі приміщення, мг/куб.м</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="ch" 
                                 value="<%= ch %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>Tout:</label>
+                            <label>Tout, час, що проводиться поза приміщенням, год/доба</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="tout" value="<%= tout %>"
                                 autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>Tin:</label>
+                            <label>Tin, час, що проводиться у приміщенні, год/доба</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="tin" value="<%= tin %>"
                                 autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>Vout:</label>
+                            <label>Vout, швидкість дихання поза приміщенням, куб.м/год</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="vout" value="<%= vout %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>Vin:</label>
+                            <label>Vin, швидкість дихання у приміщенні, куб.м/год</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="vin" value="<%= vin %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>EF:</label>
+                            <label>EF, частота впливу, днів/рік</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="ef" value="<%= ef %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>ED:</label>
+                            <label>ED, тривалість впливу, років</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="ed" value="<%= ed %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>BW:</label>
+                            <label>BW, маса тіла, кг</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="bw" value="<%= bw %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>AT:</label>
+                            <label>AT, період осереднення експозиції, років</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="at" value="<%= at %>" autocomplete="off">
                         </div>
                         <div class="form-group">
@@ -82,7 +82,7 @@
                         </div>
                     </form>
                     <div class="alert alert-info mt-2" role="alert">
-                        ADD/LADD = <%= add_ladd %>
+                        ADD/LADD = <%= add_ladd %>, середня добова доза речовини, мг/кг-доба
                     </div>
                 </div>
             </div>     

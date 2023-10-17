@@ -28,12 +28,12 @@
                                 value="<%= risk.concentration_id %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>С:</label>
+                            <label>С, рівень впливу речовини, мг/куб.м;</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="c" value="<%= risk.concentration_value %>"
                                 autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>Rfc:</label>
+                            <label>Rfc, безпечний рівень впливу, мг/куб.м</label>
                             <input type="number" min="0" step="any" class="form-control" name="rfc" value="<%= rfc %>"
                                 autocomplete="off">
                         </div>
@@ -42,20 +42,18 @@
                         </div>
                     </form>
                     <div class="alert alert-info mt-2" role="alert">
-                        HQ = <%= hq %>
-                        <p class="mb-0">
-                            <% if (hq > 1 ) { %>
-                                Імовірність розвитку шкідливих ефектів
-                                зростає пропорційно збільшенню HQ
-                            <% } else if ( hq === 1) { %>
-                                Гранична величина, що не потребує термінових 
-                                заходів, однак не може розглядатися як досить
-                                прийнятна
-                            <% } else { %>
-                                Ризик виникнення шкідливих ефектів розглядають як зневажливо малий
-                            <% } %>
-                            </p>
+                        HQ = <%= hq %>, коефіцієнт небезпеки впливу речовини
                     </div>
+                    <% if (hq > 1 ) { %>
+                            <div class="alert alert-danger" role="alert">Імовірність розвитку шкідливих ефектів
+                            зростає пропорційно збільшенню HQ</div>
+                        <% } else if ( hq === 1) { %>
+                            <div class="alert alert-warning" role="alert">Гранична величина, що не потребує термінових
+                            заходів, однак не може розглядатися як досить
+                            прийнятна</div>
+                        <% } else { %>
+                            <div class="alert alert-success" role="alert">Ризик виникнення шкідливих ефектів розглядають як зневажливо малий</div>
+                        <% } %>
                 </div> 
             </div>
 

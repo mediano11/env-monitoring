@@ -28,12 +28,12 @@
                                 value="<%= risk.concentration_id %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>LADD:</label>
+                            <label>LADD, середня добова доза протягом життя, мг/(кг * доба)</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="add_ladd" value="<%= risk.add_ladd %>"
                                 autocomplete="off">
                         </div>
                         <div class="form-group col-6">
-                            <label>SF:</label>
+                            <label>SF, фактор нахилу, (мг/(кг * доба))^-1</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="sf" value="<%= sf %>"
                                 autocomplete="off">
                         </div>
@@ -42,7 +42,7 @@
                         </div>
                     </form>
                     <div class="alert alert-info mt-2" role="alert">
-                        CR = <%= cr %>
+                        CR = <%= cr %>, індивідуальний канцерогенний ризик
                     </div>
                 </div> 
             </div>
