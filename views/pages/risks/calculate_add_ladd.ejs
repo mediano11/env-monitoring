@@ -10,13 +10,16 @@
     <%- include('../../partials/header'); %>
 
         <main class="container">
+            <a href="/concentrations/<%= risk.concentration_id %>/risks" class="btn btn-outline-info my-3">
+                Go back
+            </a>
             <h1 class="py-3">
-                Calculate risk for <%= concentration.pollutant_name %> | <%= concentration.object_name %>
+                Calculate risk for <%= risk.pollutant_name %> | <%= risk.object_name %>
             </h1>
             <div class="card">
                 <h1 class="card-header">
                     Визначення середньої
-                    добової дози
+                    добової дози речовини
                 </h1>
                 <div class="card-body">
                     <div style="white-space-collapse: preserve; text-align: center">
@@ -24,11 +27,11 @@
             ADD/LADD = ---------------------------------------------------
                             (BW * AT * 365)
                     </div>
-                    <form action="/concentrations/calculate_risk/<%= concentration.concentration_id %>" method="post" class="row">
+                    <form action="/concentrations/<%= risk.concentration_id %>/calculate_risk/add_ladd" method="post" class="row">
                         <div class="form-group d-none">
                             <label>Concentratiod id:</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
-                                value="<%= concentration.concentration_id %>" autocomplete="off">
+                                value="<%= risk.concentration_id %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
                             <label>Ca:</label>
@@ -79,11 +82,10 @@
                         </div>
                     </form>
                     <div class="alert alert-info mt-2" role="alert">
-                        ADD/LOAD = <%= result %>
+                        ADD/LADD = <%= add_ladd %>
                     </div>
                 </div>
-            </div>
-           
+            </div>     
         </main>
 
         <%- include('../../partials/footer'); %>

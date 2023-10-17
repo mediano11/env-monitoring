@@ -68,44 +68,6 @@ async function updateConcentration(req, res) {
     }   
 }
 
-async function getCalculateRisk(req, res) {
-    const { id } = req.params;
-    try {
-        const concentration = await ConcentrationService.getConcentrationWithName(id);
-        res.render("pages/concentrations/calculate_risk", {
-            concentration,
-            ca: concentration.concentration_value,
-            ch: concentration.concentration_value,
-            tout: 8,
-            tin: 16,
-            vout: 1.4,
-            vin: 0.63,
-            ef: 350,
-            ed: 30,
-            bw: 70,
-            at: 70,
-            result: ''
-        });
-    } catch (error) {
-        res.render("pages/error", { error });
-    }
-}
-
-async function postCalculateRisk(req, res) {
-    const { id, ca, ch, tout, tin, vout, vin, ef, ed, bw, at } = req.body;
-    try {
-        const concentration = await ConcentrationService.getConcentrationWithName(id);
-        const result = (((ca * tout * vout) + (ch * tin * vin)) * ef *ed)/(bw * at * 365)
-        res.render("pages/concentrations/calculate_risk", {
-            concentration,
-            ca, ch, tout, tin, vout, vin, ef, ed, bw, at, result
-        });
-    } catch (error) {
-        res.render("pages/error", { error });
-    }
-}
-
-
 module.exports = {
     getConcentration,
     getConcentrations,
@@ -113,6 +75,4 @@ module.exports = {
     createConcentration,
     deleteConcentration,
     updateConcentration,
-    getCalculateRisk,
-    postCalculateRisk
 }

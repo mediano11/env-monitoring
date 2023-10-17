@@ -34,6 +34,16 @@ create table pollutant_concentration (
     primary key(concentration_id, object_id, pollutant_code)
 );
 
+create table risks (
+	risk_id int auto_increment,
+    concentration_id int,
+    add_ladd float,
+    cr float,
+    pcr float,
+    hq float,
+    FOREIGN KEY (concentration_id) REFERENCES pollutant_concentration(concentration_id),
+    primary key(risk_id, concentration_id)
+);
 -- SET FOREIGN_KEY_CHECKS=OFF; 
 DELETE FROM pollutant WHERE pollutant_code = 4;
 -- insert into object(name, activity, address) VALUES ('Object 1', 'Activity 1', 'Address 1'),
