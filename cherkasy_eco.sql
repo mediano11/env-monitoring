@@ -44,12 +44,44 @@ create table risks (
     FOREIGN KEY (concentration_id) REFERENCES pollutant_concentration(concentration_id),
     primary key(risk_id, concentration_id)
 );
+
+create table losses (
+	loss_id int auto_increment,
+    concentration_id int,
+    mass float,
+    a float,
+    kt float,
+    kzi float,
+    z float,
+    FOREIGN KEY (concentration_id) REFERENCES pollutant_concentration(concentration_id),
+    primary key(loss_id, concentration_id)
+);
+
+
+DELIMITER //
+CREATE TRIGGER create_loss_on_concentration_insert
+AFTER INSERT ON pollutant_concentration
+FOR EACH ROW
+BEGIN
+  INSERT INTO losses (concentration_id, mass, a, kt, kzi, z)
+  VALUES (NEW.concentration_id, 0, 0, 0, 0, 0);
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER create_risks_on_concentration_insert
+AFTER INSERT ON pollutant_concentration
+FOR EACH ROW
+BEGIN
+  INSERT INTO risks (concentration_id, add_ladd, cr, pcr, hq)
+  VALUES (NEW.concentration_id, 0, 0, 0, 0);
+END;
+//
+DELIMITER ;
+select * from risks;
 -- SET FOREIGN_KEY_CHECKS=OFF; 
-DELETE FROM pollutant WHERE pollutant_code = 4;
--- insert into object(name, activity, address) VALUES ('Object 1', 'Activity 1', 'Address 1'),
-	-- ('Object 2', 'Activity 2', 'Address 2');
+
 select * from object;
-select * from pollution where pollution_id = 2;
 
 select * from pollutant_concentration;
--- drop database cherkasy_env_monitoring;

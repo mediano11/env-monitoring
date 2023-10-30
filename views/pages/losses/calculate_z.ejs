@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+
+        <main class="container">
+            <a href="/concentrations/<%= loss.concentration_id %>/losses" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate loss for <%= loss.pollutant_name %> | <%= loss.object_name %>
+            </h1>
+            <div class="card">
+                <h3 class="card-header">
+                    Розрахунок розміру відшкодування збитків за наднормативний викид однієї тонни забруднюючої речовини в атмосферне повітря
+                </h3>
+                <div class="card-body">
+                    <div style="white-space-collapse: preserve; text-align: center">З = m х 1,1П х A х К(т) х К(зі)
+                    </div>
+                    <form action="/concentrations/<%= loss.concentration_id %>/calculate_loss/z" method="post" class="row">
+                        <div class="form-group d-none">
+                            <label>Concentratiod id:</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                value="<%= loss.concentration_id %>" autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>m, маса наднормативного викиду забруднюючої речовини в атмосферне повітря, т</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="mass" value="<%= mass %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>П, розмір мінімальної заробітної плати, грн</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="p" value="<%= p %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>А, безрозмірний показник відносної небезпечності забруднюючої речовини, т</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="a" value="<%= a %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>К(т), коефіцієнт, що враховує територіальні соціально-екологічні особливості</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="kt" value="<%= kt %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label>К(зі), коефіцієнт, що залежить від рівня забруднення атмосферного повітря населеного пункту</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="kzi" value="<%= kzi %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                        </div>
+                    </form>
+                    <div class="alert alert-info mt-2" role="alert">
+                       З = <%= z %>, розмір збитків, грн
+                    </div>
+                </div>
+            </div>     
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

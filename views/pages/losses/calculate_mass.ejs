@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+
+        <main class="container">
+            <a href="/concentrations/<%= loss.concentration_id %>/losses" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate loss for <%= loss.pollutant_name %> | <%= loss.object_name %>
+            </h1>
+            <div class="card">
+                <h3 class="card-header">
+                    Розрахунок маси наднормативного викиду забруднюючих речовин в атмосферне повітря
+                </h3>
+                <div class="card-body">
+                    <div style="white-space-collapse: preserve; text-align: center">m = 3,6 х 10^(-6) х ( ро(Ві) - ро(Внорм) ) х q х Т</div>
+                    <form action="/concentrations/<%= loss.concentration_id %>/calculate_loss/mass" method="post" class="row">
+                        <div class="form-group d-none">
+                            <label>Concentratiod id:</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                value="<%= loss.concentration_id %>" autocomplete="off">
+                        </div>
+                        <div class="form-group col-6 align-self-end py-2">
+                            <label>po(Bi), середнє значення масової концентрації забруднюючої речовини, мг/куб.м</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="povi"
+                                value="<%= povi %>" autocomplete="off">
+                        </div>
+                        <div class="form-group col-6 py-2">
+                            <label>po(Внорм), значення затвердженого нормативу викиду забруднюючої речовини, мг/куб.м</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="povn" 
+                                value="<%= povn %>" autocomplete="off">
+                        </div>
+                        <div class="form-group col-6 py-2">
+                            <label>(q)v, значення об'ємної витрати газопилового потоку від джерела викиду забруднюючої речовини, куб.м/с</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="qv" value="<%= qv %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group col-6 py-2">
+                            <label>T, час роботи джерела викиду i-тої забруднюючої речовини в режимі наднормативного викиду, год</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="t" value="<%= t %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                        </div>
+                    </form>
+                    <div class="alert alert-info mt-2" role="alert">
+                        mass = <%= mass %>, маса наднормативного викиду     забруднюючої речовини в атмосферне повітря, т
+                    </div>
+                </div>
+            </div>     
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

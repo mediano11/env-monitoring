@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body>
+
+    <%- include('../../partials/header'); %>
+
+    <main class="container">
+        <a href="/concentrations" class="btn btn-outline-info my-3">
+            Go back
+        </a>
+        <section class="content">
+            <h1 class="py-3">
+                Calculate loss for <%= loss.pollutant_name %> | <%= loss.object_name %>
+            </h1>
+            <div class="box box-primary" style="margin:5px;padding:5px;">
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th>Маса наднормативного викиду забруднюючих речовин</th>
+                                    <th>Безрозмірний показник відносної небезпечності</th>
+                                    <th>Коефіцієнт, що враховує територіальні
+                                    соціально-екологічні особливості</th>
+                                    <th>Коефіцієнт, що залежить від рівня забруднення атмосферного повітря н/п</th>
+                                    <th>Розмір відшкодування збитків за наднормативний викид однієї тонни забруднюючої речовини</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p><%= loss.mass %> т</p>
+                                        <a href="/concentrations/<%= loss.concentration_id %>/calculate_loss/mass">Calulate loss</a>
+                                    </td>
+                                    <td>
+                                        <p><%= loss.a %></p>
+                                        <a href="/concentrations/<%= loss.concentration_id %>/calculate_loss/a">Calulate loss</a>
+                                    </td>
+                                    <td>
+                                        <p><%= loss.kt %></p>
+                                        <a href="/concentrations/<%= loss.concentration_id %>/calculate_loss/kt">Calulate loss</a>
+                                    </td>
+                                    <td>
+                                        <p><%= loss.kzi %></p>
+                                        <a href="/concentrations/<%= loss.concentration_id %>/calculate_loss/kzi">Calulate loss</a>
+                                    </td>
+                                    <td>
+                                        <p><%= loss.z %> грн</p>
+                                        <a href="/concentrations/<%= loss.concentration_id %>/calculate_loss/z">Calulate loss</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <%- include('../../partials/footer'); %>
+    
+
+</body>
+
+</html>
