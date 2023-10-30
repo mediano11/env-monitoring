@@ -22,6 +22,30 @@ CREATE TABLE pollution (
     FOREIGN KEY (object_id) REFERENCES object (object_id),
     FOREIGN KEY (pollutant_code) REFERENCES pollutant (pollutant_code),
     primary key(pollution_id, object_id, pollutant_code)
+<<<<<<< HEAD
+=======
+);
+
+create table pollutant_concentration (
+	concentration_id int auto_increment,
+    object_id int,
+    pollutant_code int,
+    concentration_value float,
+	FOREIGN KEY (object_id) REFERENCES object (object_id),
+    FOREIGN KEY (pollutant_code) REFERENCES pollutant(pollutant_code),
+    primary key(concentration_id, object_id, pollutant_code)
+);
+
+create table risks (
+	risk_id int auto_increment,
+    concentration_id int,
+    add_ladd float,
+    cr float,
+    pcr float,
+    hq float,
+    FOREIGN KEY (concentration_id) REFERENCES pollutant_concentration(concentration_id),
+    primary key(risk_id, concentration_id)
+>>>>>>> ba64cb7058df577518694c581fcab6e11dbed532
 );
 
 create table pollutant_concentration (

@@ -5,7 +5,8 @@ async function getRisk(id) {
     if (!id) {
         throw new Error('Wrong risk id');
     }
-    const [row] = await pool.query("select * from risks where    = ?", [id]);
+    const [row] = await pool.query("select * from risks where concentration_id = ?", [id]);
+
     return row[0];
 }
 
