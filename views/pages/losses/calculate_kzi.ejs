@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+
+        <main class="container">
+            <a href="/concentrations/<%= loss.concentration_id %>/losses" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate loss for <%= loss.pollutant_name %> | <%= loss.object_name %>
+            </h1>
+            <div class="card">
+                <h3 class="card-header">
+                    Розрахунок коефіцієнту, що залежить від рівня забруднення атмосферного повітря населеного пункту
+                </h3>
+                <div class="card-body">
+                    <div style="white-space-collapse: preserve; text-align: center">К(зі) = ро(Ві) / ГДК</div>
+                    <form action="/concentrations/<%= loss.concentration_id %>/calculate_loss/kzi" method="post" class="row">
+                        <div class="form-group d-none">
+                            <label>Concentratiod id:</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                value="<%= loss.concentration_id %>" autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>po(Bi), середньорічна концентрація забруднюючої речовини, мг/куб.м</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="povi" value="<%= povi %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>ГДК, середньодобова граничнодопустима концентрація, мг/куб.м.</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="gdk" value="<%= gdk %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                        </div>
+                    </form>
+                    <div class="alert alert-info mt-2" role="alert">
+                        K(зі) = <%= kzi %>, коефіцієнт, що залежить від рівня забруднення атмосферного повітря населеного пункту
+                    </div>
+                </div>
+            </div>     
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

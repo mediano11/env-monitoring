@@ -6,6 +6,7 @@ const PollutantController = require("./controllers/PollutantController.js");
 const PollutionController = require("./controllers/PollutionController.js");
 const ConcentrationController = require("./controllers/ConcentrationController.js");
 const RiskController = require("./controllers/RiskController.js");
+const LossController = require("./controllers/LossController.js");
 const UploadController = require("./controllers/UploadController.js");
 
 //index
@@ -59,6 +60,7 @@ router.get('/concentrations/delete/:id', ConcentrationController.deleteConcentra
 router.post('/concentrations/update/:id', ConcentrationController.updateConcentration);
 router.get('/concentrations/edit/:id', ConcentrationController.getConcentration);
 
+//risks
 router.get('/concentrations/:id/risks', RiskController.getRisk);
 router.get('/concentrations/:id/calculate_risk/add_ladd', RiskController.getRiskAddLadd);
 router.post('/concentrations/:id/calculate_risk/add_ladd', RiskController.calculateRiskAddLadd);
@@ -68,6 +70,19 @@ router.get('/concentrations/:id/calculate_risk/pcr', RiskController.getRiskPcr);
 router.post('/concentrations/:id/calculate_risk/pcr', RiskController.calculateRiskPcr);
 router.get('/concentrations/:id/calculate_risk/hq', RiskController.getRiskHq);
 router.post('/concentrations/:id/calculate_risk/hq', RiskController.calculateRiskHq);
+
+//losses
+router.get('/concentrations/:id/losses', LossController.getLoss);
+router.get('/concentrations/:id/calculate_loss/mass', LossController.getLossMass);
+router.post('/concentrations/:id/calculate_loss/mass', LossController.calculateLossMass);
+router.get('/concentrations/:id/calculate_loss/a', LossController.getLossA);
+router.post('/concentrations/:id/calculate_loss/a', LossController.calculateLossA);
+router.get('/concentrations/:id/calculate_loss/kt', LossController.getLossKt);
+router.post('/concentrations/:id/calculate_loss/kt', LossController.calculateLossKt);
+router.get('/concentrations/:id/calculate_loss/kzi', LossController.getLossKzi);
+router.post('/concentrations/:id/calculate_loss/kzi', LossController.calculateLossKzi);
+router.get('/concentrations/:id/calculate_loss/z', LossController.getLossZ);
+router.post('/concentrations/:id/calculate_loss/z', LossController.calculateLossZ);
 
 //upload
 router.get("/upload",UploadController.uploadExcel)

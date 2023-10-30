@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+
+        <main class="container">
+            <a href="/concentrations/<%= loss.concentration_id %>/losses" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate loss for <%= loss.pollutant_name %> | <%= loss.object_name %>
+            </h1>
+            <div class="card">
+                <h3 class="card-header">
+                    Розрахунок коефіцієнту, що враховує територіальні
+                    соціально-екологічні особливості
+                </h3>
+                <div class="card-body">
+                    <div style="white-space-collapse: preserve; text-align: center">Кт = К(нас) х К(ф)</div>
+                    <form action="/concentrations/<%= loss.concentration_id %>/calculate_loss/kt" method="post" class="row">
+                        <div class="form-group d-none">
+                            <label>Concentratiod id:</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                value="<%= loss.concentration_id %>" autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>К(нас), коефіцієнт, що залежить від чисельності жителів населеного пункту</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="knas"
+                                value="<%= knas %>" autocomplete="off">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>К(ф), коефіцієнт, що враховує народногосподарське значення населеного пункту</label>
+                            <input type="number" min="0" max="9999" step="any" class="form-control" name="kf" value="<%= kf %>"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                        </div>
+                    </form>
+                    <div class="alert alert-info mt-2" role="alert">
+                        К(т) = <%= kt %>, коефіцієнт, що враховує територіальні соціально-екологічні особливості
+                    </div>
+                </div>
+            </div>     
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

@@ -10,5 +10,6 @@
 
 .xlsx
 .sql
+*.docx
 
 /uploads
