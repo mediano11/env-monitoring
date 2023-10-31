@@ -22,7 +22,9 @@
                                     <tr>
                                         <th>Pollutant Code</th>
                                         <th>Pollutant Name</th>
-                                        <th>GDK</th> 
+                                        <th>GDK, мг/м^3</th>
+                                        <th>Danger class</th>
+                                        <th>Tax rate, грн</th>
                                         <th>Operations</th>
                                     </tr>
                                 </thead>
@@ -37,6 +39,12 @@
                                             </td>
                                             <td>
                                                 <%= pollutant.gdk %>
+                                            </td>
+                                            <td>
+                                                <%= pollutant.danger_class %>
+                                            </td>
+                                            <td>
+                                                <%= pollutant.tax_rate %>
                                             </td>
                                             <td>
                                                 <a href="/pollutants/edit/<%= pollutant.pollutant_code %>">Edit</a>

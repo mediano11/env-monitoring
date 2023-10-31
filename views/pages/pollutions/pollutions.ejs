@@ -23,7 +23,9 @@
                                         <th>Pollution ID</th>
                                         <th>Object Name</th>
                                         <th>Pollutant Name</th>
-                                        <th>Pollutant Value</th>
+                                        <th>Pollutant Value, т</th>
+                                        <th>Tax value, грн</th>
+                                        <th>Tax amount, грн</th>
                                         <th>DATE</th> 
                                         <th>Operations</th>
                                     </tr>
@@ -42,6 +44,12 @@
                                             </td>
                                             <td>
                                                 <%= pollution.pollutant_value %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.tax_value %>
+                                            </td>
+                                            <td>
+                                                <%= pollution.tax_amount %>
                                             </td>
                                             <td>
                                                 <%= pollution.date %>

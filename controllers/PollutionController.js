@@ -2,11 +2,38 @@ const PollutionService = require("../services/PollutionService.js");
 const PollutantService = require("../services/PollutantService.js");
 const ObjectService = require("../services/ObjectService.js");
 
+const formatter = Intl.NumberFormat('en');
+
+function getClassTax(level) {
+  const taxRates = {
+    1: 18413.24,
+    2: 4216.92,
+    3: 628.32,
+    4: 145.50,
+  };
+  return taxRates[level] || 0;
+}
+
 async function getPollutions(req, res) {
-    try {
+    try {      
         const pollutions = await PollutionService.getPollutionsWithName();
+        const result = await Promise.all(pollutions.map(async (pollution) => {
+            const pollutant = await PollutantService.getPollutantByName(pollution.pollutant_name);
+            const tax_value =
+                pollutant.tax_rate ? pollutant.tax_rate :
+                pollutant.danger_class ? getClassTax(pollutant.danger_class) : 0;
+            
+            const tax_amount = formatter.format(pollution.pollutant_value * tax_value);
+ 
+            return {
+                ...pollution,
+                tax_value,
+                tax_amount
+            };
+        }));
+
         res.render("pages/pollutions/pollutions", {
-            pollutions,
+            pollutions: result
         });
     } catch (error) {
         res.render("pages/error", { error });
