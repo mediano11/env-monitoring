@@ -31,12 +31,7 @@ router.get('/objects/edit/:id', ObjectController.getObject);
 
 //pollutants
 router.post('/pollutants/add', PollutantController.createPollutant);
-router.get('/pollutants/add', (req, res) => {
-    res.render('pages/pollutants/add', {
-        pollutant_name: '',
-        gdk: 0
-    })
-});
+router.get('/pollutants/add',PollutantController.getCreatePollutant);
 router.get('/pollutants', PollutantController.getPollutants);
 router.get('/pollutants/delete/:id', PollutantController.deletePollutant);
 router.post('/pollutants/update/:id', PollutantController.updatePollutant);

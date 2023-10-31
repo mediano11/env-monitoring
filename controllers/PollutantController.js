@@ -20,7 +20,14 @@ async function getPollutant(req, res) {
         res.render("pages/error", { error });
     }
 }
-
+async function getCreatePollutant(req, res) {
+    res.render('pages/pollutants/add', {
+        pollutant_name: '',
+        gdk: 0,
+        danger_class: 0,
+        tax_rate: 0
+    })
+}
 async function createPollutant(req, res) {
     try {
         const newPollutant = await PollutantService.createPollutant(req.body)
@@ -53,6 +60,7 @@ async function updatePollutant(req, res) {
 module.exports = {
     getPollutants,
     getPollutant,
+    getCreatePollutant,
     createPollutant,
     deletePollutant,
     updatePollutant
