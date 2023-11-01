@@ -1,12 +1,15 @@
 const LossService = require("../services/LossService.js");
 const ConcentrationService = require("../services/ConcentrationService.js");
 
+const formatter = Intl.NumberFormat('en');
+
 async function getLoss(req, res) {
     const { id } = req.params;
     try {
         const loss = await LossService.getLossWithName(id);
         res.render(`pages/losses/losses`, {
-            loss
+            ...loss,
+            z: formatter.format(loss.z)
         });
     } catch (error) {
         res.render("pages/error", { error });
@@ -23,8 +26,8 @@ async function getLossMass(req, res) {
             mass: loss.mass,
             povi: concentration.concentration_value,
             povn: 200,
-            qv: 300,
-            t: 6000
+            qv: 20,
+            t: 1000
         });
     } catch (error) {
         res.render("pages/error", { error });
@@ -180,7 +183,7 @@ async function getLossZ(req, res) {
             a: loss.a,
             kt: loss.kt,
             kzi: loss.kzi,
-            z: loss.z
+            z: formatter.format(loss.z)
         });
     } catch (error) {
         res.render("pages/error", { error });
@@ -201,7 +204,7 @@ async function calculateLossZ(req, res) {
             z
         }, id);
         res.render("pages/losses/calculate_z", {
-            loss, mass, p, a, kt, kzi, z
+            loss, mass, p, a, kt, kzi, z: formatter.format(z)
         });
     } catch (error) {
         res.render("pages/error", { error });

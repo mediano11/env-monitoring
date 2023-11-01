@@ -11,6 +11,26 @@
     <main class="container">
         <section class="content">
             <h1 class="mt-4 mb-3">Concentrations</h1>
+            <form class="d-flex">
+                <div class="form-group px-2 flex-grow-1">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Object name</span>
+                        <input type="text" class="form-control"
+                            aria-describedby="inputGroup-sizing-sm" name="object_name" autocomplete="off"
+                            value="<%=query.object_name %>">
+                    </div>
+                </div>
+                <div class="form-group px-2 flex-grow-1">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Pollutant name</span>
+                        <input type="text" class="form-control"
+                            aria-describedby="inputGroup-sizing-sm" name="pollutant_name" autocomplete="off"
+                            value="<%=query.pollutant_name %>">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-info btn-sm">Search</button>
+                <a href="/concentrations" class="btn btn-outline-danger btn-sm mx-2">Clear</a>
+            </form>
             <div class="box box-primary" style="margin:5px;padding:5px;">
                 <div class="box-body">
                     <% if (concentrations.length===0) { %>
@@ -48,24 +68,16 @@
                                                 <a href="/concentrations/<%= concentration.concentration_id %>/risks">Risks</a>
                                             </td>
                                             <td>
-<<<<<<< HEAD
                                                 <a href="/concentrations/<%= concentration.concentration_id %>/losses">Losses</a>
                                             </td>
                                             <td>
-=======
->>>>>>> ba64cb7058df577518694c581fcab6e11dbed532
                                                 <a href="/concentrations/edit/<%= concentration.concentration_id %>">Edit</a>
                                                 <a onclick="return confirm('Are you sure you want to delete <%= concentration.concentration_id %> concentration?')"
                                                     href="/concentrations/delete/<%= concentration.concentration_id %>">Delete
                                                 </a>
                                             </td>
                                         </tr>
-<<<<<<< HEAD
                                         <% }); %>             
-=======
-                                        <% }); %>
-                
->>>>>>> ba64cb7058df577518694c581fcab6e11dbed532
                                 </tbody>
                             </table>
                         </div>

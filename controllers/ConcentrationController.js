@@ -3,10 +3,21 @@ const ObjectService = require("../services/ObjectService.js");
 const ConcentrationService = require("../services/ConcentrationService.js");
 
 async function getConcentrations(req, res) {
+    const filters = req.query; 
     try {
         const concentrations = await ConcentrationService.getConcentrationsWithName();
+        const filteredResult = concentrations.filter(concentration => { 
+            let isValid = true; 
+            for (key in filters) {
+                if (filters[key]) {
+                    isValid = isValid && (concentration[key] + '').toLocaleLowerCase().includes(filters[key].toLocaleLowerCase())  ;  
+                }
+            } 
+            return isValid; 
+        }); 
         res.render("pages/concentrations/concentrations", {
-            concentrations,
+            concentrations: filteredResult,
+            query: filters
         });
     } catch (error) {
         res.render("pages/error", { error });

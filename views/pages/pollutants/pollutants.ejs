@@ -11,6 +11,17 @@
     <main class="container">
         <section class="content">
             <h1 class="mt-4 mb-3">Pollutant</h1>
+            <form class="d-flex">
+                <div class="form-group px-2 flex-grow-1">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Pollutant name</span>
+                        <input type="text" class="form-control" aria-describedby="inputGroup-sizing-sm" name="pollutant_name"
+                            autocomplete="off" value="<%=query.pollutant_name %>">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-info btn-sm">Search</button>
+                <a href="/pollutants" class="btn btn-outline-danger btn-sm mx-2">Clear</a>
+            </form>
             <div class="box box-primary" style="margin:5px;padding:5px;">
                 <div class="box-body">
                     <% if (pollutants.length===0) { %>
@@ -22,7 +33,9 @@
                                     <tr>
                                         <th>Pollutant Code</th>
                                         <th>Pollutant Name</th>
-                                        <th>GDK</th> 
+                                        <th>GDK, мг/м^3</th>
+                                        <th>Danger class</th>
+                                        <th>Tax rate, грн</th>
                                         <th>Operations</th>
                                     </tr>
                                 </thead>
@@ -37,6 +50,12 @@
                                             </td>
                                             <td>
                                                 <%= pollutant.gdk %>
+                                            </td>
+                                            <td>
+                                                <%= pollutant.danger_class %>
+                                            </td>
+                                            <td>
+                                                <%= pollutant.tax_rate %>
                                             </td>
                                             <td>
                                                 <a href="/pollutants/edit/<%= pollutant.pollutant_code %>">Edit</a>

@@ -1,10 +1,21 @@
 const PollutantService = require("../services/PollutantService.js");
 
 async function getPollutants(req, res) {
+    const filters = req.query
     try {
         const pollutants = await PollutantService.getPollutants();
+        const filteredPollutant = pollutants.filter(pollutant => { 
+            let isValid = true; 
+            for (key in filters) {
+                if (filters[key]) {
+                    isValid = isValid && pollutant[key].toLocaleLowerCase().includes(filters[key].toLocaleLowerCase()); 
+                }
+            }
+            return isValid; 
+        }); 
         res.render("pages/pollutants/pollutants", {
-            pollutants,
+            pollutants: filteredPollutant,
+            query: filters
         });
     } catch (error) {
         res.render("pages/error", { error });
@@ -20,7 +31,14 @@ async function getPollutant(req, res) {
         res.render("pages/error", { error });
     }
 }
-
+async function getCreatePollutant(req, res) {
+    res.render('pages/pollutants/add', {
+        pollutant_name: '',
+        gdk: 0,
+        danger_class: 0,
+        tax_rate: 0
+    })
+}
 async function createPollutant(req, res) {
     try {
         const newPollutant = await PollutantService.createPollutant(req.body)
@@ -53,6 +71,7 @@ async function updatePollutant(req, res) {
 module.exports = {
     getPollutants,
     getPollutant,
+    getCreatePollutant,
     createPollutant,
     deletePollutant,
     updatePollutant

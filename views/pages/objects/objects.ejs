@@ -11,6 +11,17 @@
     <main class="container">
         <section class="content">
             <h1 class="mt-4 mb-3">Industrial objects</h1>
+            <form class="d-flex">
+                <div class="form-group px-2 flex-grow-1">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Object name</span>
+                        <input type="text" class="form-control"
+                            aria-describedby="inputGroup-sizing-sm" name="name" autocomplete="off" value="<%=query.name %>">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-info btn-sm">Search</button>
+                <a href="/objects" class="btn btn-outline-danger btn-sm mx-2">Clear</a>
+            </form>
             <div class="box box-primary" style="margin:5px;padding:5px;">
                 <div class="box-body">
                     <% if (objects.length === 0) { %>

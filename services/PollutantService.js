@@ -22,11 +22,19 @@ async function getPollutantId(name) {
     return row[0].pollutant_code;
 }
 
+async function getPollutantByName(name) {
+    const [row] = await pool.query("select * from pollutant where pollutant_name = ?", [name]);
+    if (row.length === 0) {
+        return null;
+    } 
+    return row[0];
+}
+
 async function createPollutant(pollutant) {
-    const { pollutant_name, gdk } = pollutant;
+    const { pollutant_name, gdk, danger_class, tax_rate } = pollutant;
     const [row] = await pool.query(
-        "INSERT INTO pollutant(pollutant_name, gdk) VALUES (?, ?)",
-        [pollutant_name, gdk]
+        "INSERT INTO pollutant(pollutant_name, gdk, danger_class, tax_rate) VALUES (?, ?, ?, ?)",
+        [pollutant_name, gdk, danger_class, tax_rate]
     );
     return row[0];
 }
@@ -43,8 +51,8 @@ async function updatePollutant(pollutant, id) {
     if (!id) {
         throw new Error('Wrong pollutant id');
     }
-    const { pollutant_name, gdk } = pollutant;
-    const [row] = await pool.query("UPDATE pollutant set pollutant_name=?, gdk=? where pollutant_code=?", [pollutant_name, gdk, id]);
+    const { pollutant_name, gdk, danger_class, tax_rate } = pollutant;
+    const [row] = await pool.query("UPDATE pollutant set pollutant_name=?, gdk=?, danger_class=?, tax_rate=? where pollutant_code=?", [pollutant_name, gdk, danger_class, tax_rate, id]);
     return row[0];
 }
 
@@ -54,5 +62,6 @@ module.exports = {
     updatePollutant,
     getPollutant,
     getPollutants,
-    getPollutantId
+    getPollutantId,
+    getPollutantByName
 }
