@@ -10,7 +10,6 @@ async function getConcentrations(req, res) {
             let isValid = true; 
             for (key in filters) {
                 if (filters[key]) {
-                    console.log(key, filters[key], concentration[key],  (concentration[key] + '').includes(filters[key]));
                     isValid = isValid && (concentration[key] + '').toLocaleLowerCase().includes(filters[key].toLocaleLowerCase())  ;  
                 }
             } 
