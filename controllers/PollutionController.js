@@ -17,6 +17,8 @@ function getClassTax(level) {
 async function getPollutions(req, res) {
     try {      
         const pollutions = await PollutionService.getPollutionsWithName();
+        const filters = req.query; 
+        
         const result = await Promise.all(pollutions.map(async (pollution) => {
             const pollutant = await PollutantService.getPollutantByName(pollution.pollutant_name);
             const tax_value =
@@ -31,9 +33,19 @@ async function getPollutions(req, res) {
                 tax_amount
             };
         }));
-
+        
+        const filteredResult = result.filter(pollution => { 
+            let isValid = true; 
+            for (key in filters) {
+                if (filters[key]) {
+                    isValid = isValid && (pollution[key] + '').toLocaleLowerCase().includes(filters[key].toLocaleLowerCase())  ;  
+                }
+            } 
+            return isValid; 
+        }); 
         res.render("pages/pollutions/pollutions", {
-            pollutions: result
+            pollutions: filteredResult,
+            query: filters
         });
     } catch (error) {
         res.render("pages/error", { error });

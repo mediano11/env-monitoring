@@ -1,10 +1,21 @@
 const PollutantService = require("../services/PollutantService.js");
 
 async function getPollutants(req, res) {
+    const filters = req.query
     try {
         const pollutants = await PollutantService.getPollutants();
+        const filteredPollutant = pollutants.filter(pollutant => { 
+            let isValid = true; 
+            for (key in filters) {
+                if (filters[key]) {
+                    isValid = isValid && pollutant[key].toLocaleLowerCase().includes(filters[key].toLocaleLowerCase()); 
+                }
+            }
+            return isValid; 
+        }); 
         res.render("pages/pollutants/pollutants", {
-            pollutants,
+            pollutants: filteredPollutant,
+            query: filters
         });
     } catch (error) {
         res.render("pages/error", { error });

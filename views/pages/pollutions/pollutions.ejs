@@ -9,66 +9,92 @@
     <%- include('../../partials/header'); %>
 
     <main class="container">
-        <section class="content">
+        <section class="content col-sm-12 py-3">
             <h1 class="mt-4 mb-3">Pollutions</h1>
+            <form class="d-flex">
+                <div class="form-group px-2 flex-grow-1">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Object name</span>
+                        <input type="text" class="form-control"
+                            aria-describedby="inputGroup-sizing-sm" name="object_name" autocomplete="off" value="<%=query.object_name %>">
+                    </div>
+                </div>
+                <div class="form-group px-2 flex-grow-1">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Pollutant name</span>
+                        <input type="text" class="form-control"
+                            aria-describedby="inputGroup-sizing-sm" name="pollutant_name" autocomplete="off"
+                            value="<%=query.pollutant_name %>">
+                    </div>
+                </div>
+                <div class="form-group px-2 col-2">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Date</span>
+                        <input type="text" class="form-control"
+                            aria-describedby="inputGroup-sizing-sm" name="date" autocomplete="off" value="<%=query.date %>">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-info btn-sm">Search</button>
+                <a href="/pollutions" class="btn btn-outline-danger btn-sm mx-2">Clear</a>
+            </form>
             <div class="box box-primary" style="margin:5px;padding:5px;">
                 <div class="box-body">
                     <% if (pollutions.length===0) { %>
                         <p class="text-center fs-3">Pollutions list is empty!</p>
-                    <% } else { %>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Pollution ID</th>
-                                        <th>Object Name</th>
-                                        <th>Pollutant Name</th>
-                                        <th>Pollutant Value, т</th>
-                                        <th>Tax value, грн</th>
-                                        <th>Tax amount, грн</th>
-                                        <th>DATE</th> 
-                                        <th>Operations</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% pollutions.forEach(function(pollution) { %>
+                        <% } else { %>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <%= pollution.pollution_id %>
-                                            </td>
-                                            <td>
-                                                <%= pollution.object_name %>
-                                            </td>
-                                            <td>
-                                                <%= pollution.pollutant_name %>
-                                            </td>
-                                            <td>
-                                                <%= pollution.pollutant_value %>
-                                            </td>
-                                            <td>
-                                                <%= pollution.tax_value %>
-                                            </td>
-                                            <td>
-                                                <%= pollution.tax_amount %>
-                                            </td>
-                                            <td>
-                                                <%= pollution.date %>
-                                            </td>
-                                            <td>
-                                                <a href="/pollutions/edit/<%= pollution.pollution_id %>">Edit</a>
-                                                <a onclick="return confirm('Are you sure you want to delete <%= pollution.pollution_id %> pollution?')"
-                                                    href="/pollutions/delete/<%= pollution.pollution_id %>">Delete
-                                                </a>
-                                            </td>
+                                            <th>Pollution ID</th>
+                                            <th>Object Name</th>
+                                            <th>Pollutant Name</th>
+                                            <th>Pollutant Value, т</th>
+                                            <th>Tax value, грн</th>
+                                            <th>Tax amount, грн</th>
+                                            <th>DATE</th>
+                                            <th>Operations</th>
                                         </tr>
-                                        <% }); %>
-                
-                                </tbody>
-                            </table>
-                        </div>
-                    <% } %>
+                                    </thead>
+                                    <tbody>
+                                        <% pollutions.forEach(function(pollution) { %>
+                                            <tr>
+                                                <td>
+                                                    <%= pollution.pollution_id %>
+                                                </td>
+                                                <td>
+                                                    <%= pollution.object_name %>
+                                                </td>
+                                                <td>
+                                                    <%= pollution.pollutant_name %>
+                                                </td>
+                                                <td>
+                                                    <%= pollution.pollutant_value %>
+                                                </td>
+                                                <td>
+                                                    <%= pollution.tax_value %>
+                                                </td>
+                                                <td>
+                                                    <%= pollution.tax_amount %>
+                                                </td>
+                                                <td>
+                                                    <%= pollution.date %>
+                                                </td>
+                                                <td>
+                                                    <a href="/pollutions/edit/<%= pollution.pollution_id %>">Edit</a>
+                                                    <a onclick="return confirm('Are you sure you want to delete <%= pollution.pollution_id %> pollution?')"
+                                                        href="/pollutions/delete/<%= pollution.pollution_id %>">Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+        
+                                    </tbody>
+                                </table>
+                            </div>
+                            <% } %>
                 </div>
-            </section>
+        </section>
     </main>
 
     <%- include('../../partials/footer'); %>
