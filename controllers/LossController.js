@@ -26,8 +26,8 @@ async function getLossMass(req, res) {
             mass: loss.mass,
             povi: concentration.concentration_value,
             povn: 200,
-            qv: 300,
-            t: 6000
+            qv: 20,
+            t: 1000
         });
     } catch (error) {
         res.render("pages/error", { error });
