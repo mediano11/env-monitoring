@@ -22,15 +22,66 @@
                         <table class="table" style="text-align: center;">
                             <thead>
                                 <tr>
-                                    <th>Розмір відшкодування збитків за наднормативні викиди забруднюючих речовин в атмосферне повітря</th>
-                                    <th>Розрахунок збитків від забруднення
-                                    атмосферного повітря</th>
+                                    <th>N</th>
+                                    <th>Вид збитків</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>1</td>
+                                    <td>Розмір відшкодування збитків за наднормативні викиди забруднюючих речовин в атмосферне повітря</td>
                                     <td>
-                                        <a href="/concentrations/<%= concentration_id %>/excessive_emission">Підрахувати</a>
+                                        <a href="/emergencies/<%= concentration_id %>/excessive_emission">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Розрахунок збитків від забруднення
+                                    атмосферного повітря</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/af">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Розрахунок збитків від забруднення поверхневих
+                                    і підземних вод та джерел, внутрішніх морських
+                                    вод і територіального моря</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/vf">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Розрахунок збитків від забруднення земель
+                                    несільськогосподарського призначення</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/zf">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Розрахунок збитків від руйнування та пошкодження
+                                    основних фондів, знищення майна та продукції</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/mr">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Розрахунок збитків від втрати життя та
+                                    здоров'я населення</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/nr">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Розрахунок збитків від невироблення продукції
+                                    внаслідок припинення виробництва</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/mp">Підрахувати</a>
                                     </td>
                                 </tr>
                             </tbody>

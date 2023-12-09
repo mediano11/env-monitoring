@@ -68,17 +68,17 @@ router.get('/concentrations/:id/calculate_risk/hq', RiskController.getRiskHq);
 router.post('/concentrations/:id/calculate_risk/hq', RiskController.calculateRiskHq);
 
 //excessive_emission
-router.get('/concentrations/:id/excessive_emission', ExcessiveEmissionController.getExcessiveEmission);
-router.get('/concentrations/:id/calculate_excessive_emission/mass', ExcessiveEmissionController.getExcessiveEmissionMass);
-router.post('/concentrations/:id/calculate_excessive_emission/mass', ExcessiveEmissionController.calculateExcessiveEmissionMass);
-router.get('/concentrations/:id/calculate_excessive_emission/a', ExcessiveEmissionController.getExcessiveEmissionA);
-router.post('/concentrations/:id/calculate_excessive_emission/a', ExcessiveEmissionController.calculateExcessiveEmissionA);
-router.get('/concentrations/:id/calculate_excessive_emission/kt', ExcessiveEmissionController.getExcessiveEmissionKt);
-router.post('/concentrations/:id/calculate_excessive_emission/kt', ExcessiveEmissionController.calculateExcessiveEmissionKt);
-router.get('/concentrations/:id/calculate_excessive_emission/kzi', ExcessiveEmissionController.getExcessiveEmissionKzi);
-router.post('/concentrations/:id/calculate_excessive_emission/kzi', ExcessiveEmissionController.calculateExcessiveEmissionKzi);
-router.get('/concentrations/:id/calculate_excessive_emission/z', ExcessiveEmissionController.getExcessiveEmissionZ);
-router.post('/concentrations/:id/calculate_excessive_emission/z', ExcessiveEmissionController.calculateExcessiveEmissionZ);
+router.get('/emergencies/:id/excessive_emission', ExcessiveEmissionController.getExcessiveEmission);
+router.get('/emergencies/:id/calculate_excessive_emission/mass', ExcessiveEmissionController.getExcessiveEmissionMass);
+router.post('/emergencies/:id/calculate_excessive_emission/mass', ExcessiveEmissionController.calculateExcessiveEmissionMass);
+router.get('/emergencies/:id/calculate_excessive_emission/a', ExcessiveEmissionController.getExcessiveEmissionA);
+router.post('/emergencies/:id/calculate_excessive_emission/a', ExcessiveEmissionController.calculateExcessiveEmissionA);
+router.get('/emergencies/:id/calculate_excessive_emission/kt', ExcessiveEmissionController.getExcessiveEmissionKt);
+router.post('/emergencies/:id/calculate_excessive_emission/kt', ExcessiveEmissionController.calculateExcessiveEmissionKt);
+router.get('/emergencies/:id/calculate_excessive_emission/kzi', ExcessiveEmissionController.getExcessiveEmissionKzi);
+router.post('/emergencies/:id/calculate_excessive_emission/kzi', ExcessiveEmissionController.calculateExcessiveEmissionKzi);
+router.get('/emergencies/:id/calculate_excessive_emission/z', ExcessiveEmissionController.getExcessiveEmissionZ);
+router.post('/emergencies/:id/calculate_excessive_emission/z', ExcessiveEmissionController.calculateExcessiveEmissionZ);
 
 //emergencies
 router.get('/emergencies/:id', EmergenceController.getEmergencies);

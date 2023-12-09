@@ -10,7 +10,7 @@
     <%- include('../../partials/header'); %>
 
         <main class="container">
-            <a href="/concentrations/<%= excessive_emission.concentration_id %>/excessive_emission" class="btn btn-outline-info my-3">
+            <a href="/emergencies/<%= excessive_emission.concentration_id %>/excessive_emission" class="btn btn-outline-info my-3">
                 Go back
             </a>
             <h1 class="py-3">
@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <div style="white-space-collapse: preserve; text-align: center">З = m х 1,1П х A х К(т) х К(зі)
                     </div>
-                    <form action="/concentrations/<%= excessive_emission.concentration_id %>/calculate_excessive_emission/z" method="post" class="row">
+                    <form action="/emergencies/<%= excessive_emission.concentration_id %>/calculate_excessive_emission/z" method="post" class="row">
                         <div class="form-group d-none">
                             <label>Concentratiod id:</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
