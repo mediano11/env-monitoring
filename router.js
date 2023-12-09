@@ -6,7 +6,7 @@ const PollutantController = require("./controllers/PollutantController.js");
 const PollutionController = require("./controllers/PollutionController.js");
 const ConcentrationController = require("./controllers/ConcentrationController.js");
 const RiskController = require("./controllers/RiskController.js");
-const LossController = require("./controllers/LossController.js");
+const ExcessiveEmissionController = require("./controllers/ExcessiveEmissionController.js");
 const EmergenceController = require("./controllers/EmergenceController.js");
 const UploadController = require("./controllers/UploadController.js");
 
@@ -67,18 +67,18 @@ router.post('/concentrations/:id/calculate_risk/pcr', RiskController.calculateRi
 router.get('/concentrations/:id/calculate_risk/hq', RiskController.getRiskHq);
 router.post('/concentrations/:id/calculate_risk/hq', RiskController.calculateRiskHq);
 
-//losses
-router.get('/concentrations/:id/losses', LossController.getLoss);
-router.get('/concentrations/:id/calculate_loss/mass', LossController.getLossMass);
-router.post('/concentrations/:id/calculate_loss/mass', LossController.calculateLossMass);
-router.get('/concentrations/:id/calculate_loss/a', LossController.getLossA);
-router.post('/concentrations/:id/calculate_loss/a', LossController.calculateLossA);
-router.get('/concentrations/:id/calculate_loss/kt', LossController.getLossKt);
-router.post('/concentrations/:id/calculate_loss/kt', LossController.calculateLossKt);
-router.get('/concentrations/:id/calculate_loss/kzi', LossController.getLossKzi);
-router.post('/concentrations/:id/calculate_loss/kzi', LossController.calculateLossKzi);
-router.get('/concentrations/:id/calculate_loss/z', LossController.getLossZ);
-router.post('/concentrations/:id/calculate_loss/z', LossController.calculateLossZ);
+//excessive_emission
+router.get('/concentrations/:id/excessive_emission', ExcessiveEmissionController.getExcessiveEmission);
+router.get('/concentrations/:id/calculate_excessive_emission/mass', ExcessiveEmissionController.getExcessiveEmissionMass);
+router.post('/concentrations/:id/calculate_excessive_emission/mass', ExcessiveEmissionController.calculateExcessiveEmissionMass);
+router.get('/concentrations/:id/calculate_excessive_emission/a', ExcessiveEmissionController.getExcessiveEmissionA);
+router.post('/concentrations/:id/calculate_excessive_emission/a', ExcessiveEmissionController.calculateExcessiveEmissionA);
+router.get('/concentrations/:id/calculate_excessive_emission/kt', ExcessiveEmissionController.getExcessiveEmissionKt);
+router.post('/concentrations/:id/calculate_excessive_emission/kt', ExcessiveEmissionController.calculateExcessiveEmissionKt);
+router.get('/concentrations/:id/calculate_excessive_emission/kzi', ExcessiveEmissionController.getExcessiveEmissionKzi);
+router.post('/concentrations/:id/calculate_excessive_emission/kzi', ExcessiveEmissionController.calculateExcessiveEmissionKzi);
+router.get('/concentrations/:id/calculate_excessive_emission/z', ExcessiveEmissionController.getExcessiveEmissionZ);
+router.post('/concentrations/:id/calculate_excessive_emission/z', ExcessiveEmissionController.calculateExcessiveEmissionZ);
 
 //emergencies
 router.get('/emergencies/:id', EmergenceController.getEmergencies);

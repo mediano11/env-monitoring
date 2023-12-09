@@ -10,11 +10,11 @@
     <%- include('../../partials/header'); %>
 
         <main class="container">
-            <a href="/concentrations/<%= loss.concentration_id %>/losses" class="btn btn-outline-info my-3">
+            <a href="/concentrations/<%= excessive_emission.concentration_id %>/excessive_emission" class="btn btn-outline-info my-3">
                 Go back
             </a>
             <h1 class="py-3">
-                Calculate loss for <%= loss.pollutant_name %> | <%= loss.object_name %>
+                Calculate excessive emissionfor <%= excessive_emission.pollutant_name %> | <%= excessive_emission.object_name %>
             </h1>
             <div class="card">
                 <h3 class="card-header">
@@ -23,11 +23,11 @@
                 </h3>
                 <div class="card-body">
                     <div style="white-space-collapse: preserve; text-align: center">Кт = К(нас) х К(ф)</div>
-                    <form action="/concentrations/<%= loss.concentration_id %>/calculate_loss/kt" method="post" class="row">
+                    <form action="/concentrations/<%= excessive_emission.concentration_id %>/calculate_excessive_emission/kt" method="post" class="row">
                         <div class="form-group d-none">
                             <label>Concentratiod id:</label>
                             <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
-                                value="<%= loss.concentration_id %>" autocomplete="off">
+                                value="<%= excessive_emission.concentration_id %>" autocomplete="off">
                         </div>
                         <div class="form-group col-6">
                             <label>К(нас), коефіцієнт, що залежить від чисельності жителів населеного пункту</label>

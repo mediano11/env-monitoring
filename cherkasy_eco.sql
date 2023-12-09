@@ -47,8 +47,8 @@ create table risks (
     primary key(risk_id, concentration_id)
 );
 
-create table losses (
-	loss_id int auto_increment,
+create table excessive_emission (
+	excessive_emission_id int auto_increment,
     concentration_id int,
     mass float,
     a float,
@@ -56,16 +56,16 @@ create table losses (
     kzi float,
     z float,
     FOREIGN KEY (concentration_id) REFERENCES pollutant_concentration(concentration_id),
-    primary key(loss_id, concentration_id)
+    primary key(excessive_emission_id, concentration_id)
 );
 
 
 DELIMITER //
-CREATE TRIGGER create_loss_on_concentration_insert
+CREATE TRIGGER create_excessive_emission_on_concentration_insert
 AFTER INSERT ON pollutant_concentration
 FOR EACH ROW
 BEGIN
-  INSERT INTO losses (concentration_id, mass, a, kt, kzi, z)
+  INSERT INTO excessive_emission (concentration_id, mass, a, kt, kzi, z)
   VALUES (NEW.concentration_id, 0, 0, 0, 0, 0);
 END;
 //

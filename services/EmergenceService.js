@@ -10,7 +10,7 @@ async function getEmergencyWithName(id) {
     pc.concentration_value, \
     l.mass, l.a, l.kt, l.kzi, l.z \
     FROM \
-        losses AS l \
+        excessive_emission AS l \
     JOIN \
         pollutant_concentration AS pc ON l.concentration_id = pc.concentration_id  \
     JOIN \
