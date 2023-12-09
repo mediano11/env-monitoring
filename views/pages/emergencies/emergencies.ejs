@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body>
+
+    <%- include('../../partials/header'); %>
+
+    <main class="container">
+        <a href="/emergencies" class="btn btn-outline-info my-3">
+            Go back
+        </a>
+        <section class="content">
+            <h1 class="py-3">
+                Оцінка збитків від наслідків надзвичайних ситуацій техногенного та природного характеру для <%= pollutant_name %> | <%= object_name %>
+            </h1>
+            <div class="box box-primary" style="margin:5px;padding:5px;">
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th>Розмір відшкодування збитків за наднормативні викиди забруднюючих речовин в атмосферне повітря</th>
+                                    <th>Розрахунок збитків від забруднення
+                                    атмосферного повітря</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="/concentrations/<%= concentration_id %>/losses">Підрахувати</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <%- include('../../partials/footer'); %>
+    
+
+</body>
+
+</html>

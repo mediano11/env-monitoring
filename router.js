@@ -7,6 +7,7 @@ const PollutionController = require("./controllers/PollutionController.js");
 const ConcentrationController = require("./controllers/ConcentrationController.js");
 const RiskController = require("./controllers/RiskController.js");
 const LossController = require("./controllers/LossController.js");
+const EmergenceController = require("./controllers/EmergenceController.js");
 const UploadController = require("./controllers/UploadController.js");
 
 //index
@@ -78,6 +79,9 @@ router.get('/concentrations/:id/calculate_loss/kzi', LossController.getLossKzi);
 router.post('/concentrations/:id/calculate_loss/kzi', LossController.calculateLossKzi);
 router.get('/concentrations/:id/calculate_loss/z', LossController.getLossZ);
 router.post('/concentrations/:id/calculate_loss/z', LossController.calculateLossZ);
+
+//emergencies
+router.get('/emergencies/:id', EmergenceController.getEmergencies);
 
 //upload
 router.get("/upload",UploadController.uploadExcel)
