@@ -2,6 +2,16 @@ const ConcentrationService = require("../services/ConcentrationService.js");
 const EmergenceService = require("../services/EmergenceService.js");
 const formatter = Intl.NumberFormat('en');
 
+function calculateSum(value, from, n) {
+    let sum = 0;
+
+    for (let i = from; i <= n; i++) {
+        sum += value;
+    }
+
+    return sum;
+}
+
 async function getEmergencies(req, res) {
     const { id } = req.params;
     try {
@@ -102,16 +112,7 @@ async function calculateEmergencyZns(req, res) {
     try {
         const concentration = await ConcentrationService.getConcentrationWithName(id[0]);
         if (v && t && ssf && sd && ai, n, h, m) {
-            function calculateSum(value, n) {
-                let sum = 0;
-
-                for (let i = 10; i <= n; i++) {
-                    sum += value;
-                }
-
-                return sum;
-            }
-            const sum = calculateSum(0.003 * ai * n, m)
+            const sum = calculateSum(0.003 * ai * n, 10, m)
             zns = !isNaN(v * t * ssf * sd * sum * h * Math.pow(10, -3)) ? formatter.format(v * t * ssf * sd * sum * h * Math.pow(10, -3)) : zns;
         }
         if (gdk) {
@@ -120,10 +121,51 @@ async function calculateEmergencyZns(req, res) {
                 ai = !isNaN(10 / gdk) ? formatter.format(10 / gdk) : ai;
             }  
         }
-        console.log(req.body);
         res.render(`pages/emergencies/calculate_zns`, {
             ...concentration,
             v, t, ssf, sd, ai, gdk, n, h, m, zns
+        });
+    } catch (error) {
+        res.render("pages/error", { error });
+    }
+}
+
+async function getEmergencyMr(req, res) {
+    const { id } = req.params;
+    
+    try {
+        const concentration = await ConcentrationService.getConcentrationWithName(id);
+        
+        res.render(`pages/emergencies/calculate_mr`, {
+            ...concentration,
+            fv: 0, fg: 0, pr: 0, prs: 0, sn: 0, mdg: 0, 
+            mr: 0, pi: 0, ka: 0, n: 0, lv: 0,
+            pi1: 0, ka1: 0, n1: 0, lv1: 0,
+        });
+    } catch (error) {
+        res.render("pages/error", { error });
+    }
+}
+
+async function calculateEmergencyMr(req, res) {
+    let { id, fv, fg, pr, prs, sn, mdg, mr, pi, ka, n, lv, pi1, ka1, n1, lv1} = req.body;
+
+    try {
+        const concentration = await ConcentrationService.getConcentrationWithName(id[0]);
+        if (fv && fg && pr && prs && sn && mdg) {
+            mr = !isNaN(fv * fg * pr * prs * sn * mdg) ? formatter.format(fv * fg * pr * prs * sn * mdg) : mr;
+        }
+        if (pi && ka && n && lv) {
+            const sum1 = calculateSum(pi * ka, 1, n);
+            fv = !isNaN(sum1 - lv) ? sum1 - lv : fv;
+        }
+        if (pi1 && ka1 && n1 && lv1) {
+            const sum2 = calculateSum(pi1 * ka1, 1, n1);
+            fg = !isNaN(sum2 - lv1) ? sum2 - lv1 : fg;
+        }
+        res.render(`pages/emergencies/calculate_mr`, {
+            ...concentration,
+            fv, fg, pr, prs, sn, mdg, mr, pi, ka, n, lv, pi1, ka1, n1, lv1
         });
     } catch (error) {
         res.render("pages/error", { error });
@@ -136,5 +178,7 @@ module.exports = {
     getEmergencyAf,
     calculateEmergencyAf,
     getEmergencyZns,
-    calculateEmergencyZns
+    calculateEmergencyZns,
+    getEmergencyMr,
+    calculateEmergencyMr
 }

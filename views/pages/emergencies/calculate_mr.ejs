@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+
+        <main class="container">
+            <a href="/emergencies/<%= concentration_id %>/" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate losses for <%= pollutant_name %> | <%= object_name %>
+            </h1>
+            <form method="post" action="/emergencies/<%= concentration_id %>/calculate_mr">
+                <div class="card">
+                    <h3 class="card-header">
+                        Розрахунок збитків від руйнування та пошкодження основних фондів, знищення майна та продукції
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center">Мр = Фв + Фг + Пр + Прс + Сн + Мдг</div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Фв - збитки від руйнування та пошкодження основних фондів
+                                виробничого призначення</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="fv" value="<%= fv %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Фг - збитки від руйнування та пошкодження основних фондів
+                                невиробничого призначення</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="fg" value="<%= fg %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Пр - збитки від втрат готової промислової та
+                                сільськогосподарської продукції</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="pr" value="<%= pr %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Прс - збитки від втрат незібраної сільськогосподарської
+                                продукції</label>
+                                <input type="number" min="0" step="any" class="form-control" name="prs" value="<%= prs %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Сн - збитки від втрат запасів сировини, напівфабрикатів та
+                                проміжної продукції</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="sn" value="<%= sn %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мдг - збитки від втрат майна громадян та організацій</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="mdg" value="<%= mdg %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            Mr = <%= mr %> грн, збитки від руйнування та пошкодження основних фондів,
+                            знищення майна та продукції
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <h3 class="card-header">
+                        Розрахунок збитків від руйнування та пошкодження основних
+                        фондів виробничого призначення
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center"><img src="../../../img/fgv_formula.png" alt="formula"/></div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>delta Pi - зменшення балансової вартості i-го виду основних фондів виробничого призначення внаслідок повного або часткового
+                                руйнування з урахуванням відповідних коефіцієнтів індексації</label>
+                                <input type="number" min="0" max="999999999" step="any" class="form-control" name="pi" value="<%= pi %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Ka - коефіцієнт амортизації i-го виду основних фондів виробничого призначення</label>
+                                <input type="number" min="0" max="999999999" step="any" class="form-control" name="ka" value="<%= ka %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>n - кількість видів основних фондів виробничого
+                                призначення, що були частково або повністю
+                                зруйновані</label>
+                                <input type="number" min="0" max="999999999" step="any" class="form-control" name="n" value="<%= n %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Лв - ліквідаційна вартість одержаних матеріалів і устаткування</label>
+                                <input type="number" min="0" max="999999999" step="any" class="form-control" name="lv"
+                                    value="<%= lv %>" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            Fv = <%= fv %> грн, розрахунок збитків від руйнування та пошкодження основних
+                            фондів виробничого призначення
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <h3 class="card-header">
+                        Розрахунок збитків від руйнування та пошкодження основних
+                        фондів невиробничого призначення
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center"><img src="../../../img/fgv_formula.png" alt="formula"/></div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>delta Pi - балансова вартість i-го виду повністю зруйнованих
+                                фондів невиробничого призначення з урахуванням
+                                відповідних коефіцієнтів індексації</label>
+                                <input type="number" min="0" max="999999999" step="any" class="form-control" name="pi1" value="<%= pi1 %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Ka - коефіцієнт амортизації i-го виду основних фондів невиробничого призначення</label>
+                                <input type="number" min="0" max="999999999" step="any" class="form-control" name="ka1" value="<%= ka1 %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>n - кількість видів зазначених фондів, що були повністю
+                                зруйновані</label>
+                                <input type="number" min="0" max="999999999" step="any" class="form-control" name="n1" value="<%= n1 %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Лв - ліквідаційна вартість одержаних матеріалів і устаткування</label>
+                                <input type="number" min="0" max="999999999" step="any" class="form-control" name="lv1"
+                                    value="<%= lv1 %>" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            Fg = <%= fg %> грн, розрахунок збитків від руйнування та пошкодження основних
+                            фондів невиробничого призначення
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>
