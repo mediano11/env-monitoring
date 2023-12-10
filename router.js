@@ -84,6 +84,8 @@ router.post('/emergencies/:id/calculate_excessive_emission/z', ExcessiveEmission
 router.get('/emergencies/:id', EmergenceController.getEmergencies);
 router.get('/emergencies/:id/calculate_af', EmergenceController.getEmergencyAf);
 router.post('/emergencies/:id/calculate_af', EmergenceController.calculateEmergencyAf);
+router.get('/emergencies/:id/calculate_zns', EmergenceController.getEmergencyZns);
+router.post('/emergencies/:id/calculate_zns', EmergenceController.calculateEmergencyZns);
 
 //upload
 router.get("/upload",UploadController.uploadExcel)
