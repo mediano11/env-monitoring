@@ -90,6 +90,8 @@ router.get('/emergencies/:id/calculate_mr', EmergenceController.getEmergencyMr);
 router.post('/emergencies/:id/calculate_mr', EmergenceController.calculateEmergencyMr);
 router.get('/emergencies/:id/calculate_nr', EmergenceController.getEmergencyNr);
 router.post('/emergencies/:id/calculate_nr', EmergenceController.calculateEmergencyNr);
+router.get('/emergencies/:id/calculate_zf', EmergenceController.getEmergencyZf);
+router.post('/emergencies/:id/calculate_zf', EmergenceController.calculateEmergencyZf);
 
 //upload
 router.get("/upload",UploadController.uploadExcel)

@@ -210,6 +210,39 @@ async function calculateEmergencyNr(req, res) {
 }
 
 
+async function getEmergencyZf(req, res) {
+    const { id } = req.params;
+    
+    try {
+        const concentration = await ConcentrationService.getConcentrationWithName(id);
+        
+        res.render(`pages/emergencies/calculate_zf`, {
+            ...concentration,
+            yn: 0, n: 17, m: 0, l: 0, zf: 0
+        });
+    } catch (error) {
+        res.render("pages/error", { error });
+    }
+}
+
+async function calculateEmergencyZf(req, res) {
+    let { id, yn, n, m, l, zf} = req.body;
+
+    try {
+        const concentration = await ConcentrationService.getConcentrationWithName(id[0]);
+        if (yn && n && m && l) {
+            const res = yn * n * m * l;
+            zf = !isNaN(res) ? formatter.format(res) : zf;
+        }
+        res.render(`pages/emergencies/calculate_zf`, {
+            ...concentration,
+            yn, n, m, l, zf
+        });
+    } catch (error) {
+        res.render("pages/error", { error });
+    }
+}
+
 
 module.exports = {
     getEmergencies,
@@ -220,5 +253,7 @@ module.exports = {
     getEmergencyMr,
     calculateEmergencyMr,
     getEmergencyNr,
-    calculateEmergencyNr
+    calculateEmergencyNr,
+    getEmergencyZf,
+    calculateEmergencyZf
 }
