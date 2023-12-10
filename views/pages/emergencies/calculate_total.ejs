@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+
+        <main class="container">
+            <a href="/emergencies/<%= concentration_id %>/" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate losses for <%= pollutant_name %> | <%= object_name %>
+            </h1>
+            <form method="post" action="/emergencies/<%= concentration_id %>/calculate_total">
+                <div class="card">
+                    <h3 class="card-header">
+                    Загальний обсяг збитків від наслідків надзвичайних ситуацій
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center">З = Нр +Мр +Мп +Рс/г +Мтв +Рл/г +Рр/г +Ррек +Рпзф +Аф +Вф +Зф</div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Нр - втрати життя та здоров'я населення</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="nr" value="<%= nr %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мр - руйнування та пошкодження основних фондів, знищення майна та
+                                продукції</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="mr" value="<%= mr %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мп - невироблення продукції внаслідок припинення виробництва</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="mp" value="<%= mp %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Рс/г - вилучення або порушення сільськогосподарських угідь</label>
+                                <input type="number" min="0" step="any" class="form-control" name="rsg" value="<%= rsg %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мтв - втрат тваринництва</label>
+                                <input type="number" min="0" step="any" class="form-control" name="mtv" value="<%= mtv %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Рл/г - втрати деревини та інших лісових ресурсів</label>
+                                <input type="number" min="0" step="any" class="form-control" name="rlg" value="<%= rlg %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Рр/г - втрат рибного господарства</label>
+                                <input type="number" min="0" step="any" class="form-control" name="rrg" value="<%= rrg %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Ррек - знищення або погіршення якості рекреаційних зон</label>
+                                <input type="number" min="0" step="any" class="form-control" name="rrek" value="<%= rrek %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Аф - забруднення атмосферного повітря</label>
+                                <input type="number" min="0" step="any" class="form-control" name="af" value="<%= af %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Вф - забруднення поверхневих і підземних вод та джерел, внутрішніх
+                                морських вод і територіального моря</label>
+                                <input type="number" min="0" step="any" class="form-control" name="vf" value="<%= vf %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Зф - забруднення земель несільськогосподарського призначення
+                                    морських вод і територіального моря</label>
+                                <input type="number" min="0" step="any" class="form-control" name="zf" value="<%= zf %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Рпзфф - збитки, заподіяні природно-заповідному фонду</label>
+                                <input type="number" min="0" step="any" class="form-control" name="rpzf" value="<%= rpzf %>" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            З = <%= z %> грн, загальний обсяг збитків
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

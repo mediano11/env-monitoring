@@ -244,6 +244,40 @@ async function calculateEmergencyZf(req, res) {
 }
 
 
+async function getEmergencyTotal(req, res) {
+    const { id } = req.params;
+    
+    try {
+        const concentration = await ConcentrationService.getConcentrationWithName(id);
+        
+        res.render(`pages/emergencies/calculate_total`, {
+            ...concentration,
+            nr: 0, mr: 0, mp: 0, rsg: 0, mtv: 0, rlg: 0, rrg: 0, rrek: 0, rpzf: 0, af: 0, vf: 0, zf: 0, z: 0
+        });
+    } catch (error) {
+        res.render("pages/error", { error });
+    }
+}
+
+async function calculateEmergencyTotal(req, res) {
+    let { id, nr, mr, mp, rsg, mtv, rlg, rrg, rrek, rpzf, af, vf, zf, z } = req.body;
+
+    try {
+        const concentration = await ConcentrationService.getConcentrationWithName(id[0]);
+        if (nr && mr && mp && rsg && mtv && rlg && rrg && rrek && rpzf && af && vf && zf) {
+            const res = +nr + +mr + +mp + +rsg + +mtv + +rlg + +rrg + +rrek + +rpzf + +af + +vf + +zf;
+            z = !isNaN(res) ? formatter.format(res) : z;
+        }
+        
+        res.render(`pages/emergencies/calculate_total`, {
+            ...concentration,
+            nr, mr, mp, rsg, mtv, rlg, rrg, rrek, rpzf, af, vf, zf, z
+        });
+    } catch (error) {
+        res.render("pages/error", { error });
+    }
+}
+
 module.exports = {
     getEmergencies,
     getEmergencyAf,
@@ -255,5 +289,7 @@ module.exports = {
     getEmergencyNr,
     calculateEmergencyNr,
     getEmergencyZf,
-    calculateEmergencyZf
+    calculateEmergencyZf,
+    getEmergencyTotal,
+    calculateEmergencyTotal
 }
