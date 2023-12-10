@@ -49,22 +49,21 @@ async function getEmergencyAf(req, res) {
 }
 
 async function calculateEmergencyAf(req, res) {
-    let { id, mi, pi, ai, af, kt, kf, knas, kzi, q, gdk1, gdk2} = req.body;
-
+    let { id, mi, pi, ai, af, kt, kf, knas, kzi, q, gdk1, gdk2, btn } = req.body;
     try {
         const concentration = await ConcentrationService.getConcentrationWithName(id[0]);
-        if (mi && pi && ai && kt && kzi) {
+        if (btn === 'calcAf') {
             af = !isNaN(mi * pi * ai * kt * kzi) ? formatter.format(mi * pi * ai * kt * kzi) : af;
         }
-        if (knas && kf)
+        if (btn === 'calcKt')
             kt = !isNaN(knas * kf) ? formatter.format(knas * kf) : kt;
-        if (q && gdk1) {
+        if (btn === 'calcKzi') {
             kzi = !isNaN(q / gdk1) ? formatter.format(q / gdk1) : kzi;
             if (q > gdk1) {
                 kzi = 1;
             }
         }
-        if (gdk2) {
+        if (btn === 'calcAi') {
             ai = !isNaN(1 / gdk2) ? formatter.format(1 / gdk2) : ai;
             if (gdk2 > 1) {
                 ai = !isNaN(10 / gdk2) ? formatter.format(10 / gdk2) : ai;
@@ -153,7 +152,8 @@ async function calculateEmergencyMr(req, res) {
     try {
         const concentration = await ConcentrationService.getConcentrationWithName(id[0]);
         if (fv && fg && pr && prs && sn && mdg) {
-            mr = !isNaN(fv * fg * pr * prs * sn * mdg) ? formatter.format(fv * fg * pr * prs * sn * mdg) : mr;
+            const res = +fv + +fg + +pr + +prs + +sn + +mdg;
+            mr = !isNaN(res) ? formatter.format(res) : mr;
         }
         if (pi && ka && n && lv) {
             const sum1 = calculateSum(pi * ka, 1, n);
