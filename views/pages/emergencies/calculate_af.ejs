@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+
+        <main class="container">
+            <a href="/emergencies/<%= concentration_id %>/" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate losses for <%= pollutant_name %> | <%= object_name %>
+            </h1>
+            <form method="post" action="/emergencies/<%= concentration_id %>/calculate_af">
+                <div class="card">
+                    <h3 class="card-header">
+                        Розрахунок збитків від забруднення
+                        атмосферного повітря
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center">Аф = Мi х Пi х Аi х Кт х Кзi</div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мі, маса i-ї забруднюючої речовини, що була викинута в повітря внаслідок НС, тонн.</label>
+                                <input type="number" min="0" max="99999" step="any" class="form-control" name="mi" value="<%= mi %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Пі, базова ставка компенсації збитків у частках мінімальної заробітної плати за одну тонну
+                                    умовної забруднюючої речовини, гривень/тонну</label>
+                                <input type="number" min="0" max="99999" step="any" class="form-control" name="pi" value="<%= pi %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Аі, безрозмірний показник відносної небезпечності забруднюючої речовини</label>
+                                <input type="number" min="0" max="99999" step="any" class="form-control" name="ai" value="<%= ai %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Кт, коефіцієнт урахування територіальних соціально-екологічних особливостей</label>
+                                <input type="number" min="0" max="99999" step="any" class="form-control" name="kt" value="<%= kt %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Кзі, коефіцієнт забруднення атмосферного повітря в населеному
+                                    пункті</label>
+                                <input type="number" min="0" max="99999" step="any" class="form-control" name="kzi" value="<%= kzi %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" name="btn" value="calcAf" class="btn btn-info mt-3">Calculate</button>
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            Аф = <%= af %> грн, збитки від забруднення атмосферного повітря
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <h3 class="card-header">
+                        Розрахунок коефіцієнту, що враховує територіальні
+                        соціально-екологічні особливості
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center">Кт = К(нас) х К(ф)</div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>К(нас), коефіцієнт, що залежить від чисельності жителів населеного пункту</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="knas" value="<%= knas %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>К(ф), коефіцієнт, що враховує народногосподарське значення населеного пункту</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="kf" value="<%= kf %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" name="btn" value="calcKt" class="btn btn-info mt-3">Calculate</button>
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            К(т) = <%= kt %>, коефіцієнт, що враховує територіальні соціально-екологічні особливості
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <h3 class="card-header">
+                        Розрахунок коефіцієнту, що залежить від рівня забруднення атмосферного повітря населеного пункту
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center">К(зі) = q / ГДК</div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>q, середньорічна концентрація забруднюючої речовини, мг/куб.м</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="q" value="<%= q %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>ГДК, середньодобова граничнодопустима концентрація, мг/куб.м.</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="gdk1" value="<%= gdk1 %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" name="btn" value="calcKzi" class="btn btn-info mt-3">Calculate</button>
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            K(зі) = <%= kzi %>, коефіцієнт, що залежить від рівня забруднення атмосферного повітря населеного пункту
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <h3 class="card-header">
+                        Розрахунок безрозмірного показнику відносної небезпечності
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center">A = 1/ГДК</div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label>ГДК, середньодобова граничнодопустима концентрація, мг/куб.м.</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="gdk2" value="<%= gdk2 %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" name="btn" value="calcAi" class="btn btn-info mt-3">Calculate</button>
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            Ai = <%= ai %>, безрозмірний показник відносної небезпечності забруднюючої речовини, т
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

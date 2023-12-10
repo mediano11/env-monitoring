@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body>
+
+    <%- include('../../partials/header'); %>
+
+        <main class="container">
+            <a href="/emergencies/<%= concentration_id %>/" class="btn btn-outline-info my-3">
+                Go back
+            </a>
+            <h1 class="py-3">
+                Calculate losses for <%= pollutant_name %> | <%= object_name %>
+            </h1>
+            <form method="post" action="/emergencies/<%= concentration_id %>/calculate_nr">
+                <div class="card">
+                    <h3 class="card-header">
+                        Розрахунок збитків від втрати життя та здоров'я населення
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center">Нр = S Втрр + S Вдп + S Ввтг</div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>S Втрр - втрати від вибуття трудових ресурсів з виробництва, тис грн</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="vtrr" value="<%= vtrr %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>S Вдп - витрати на виплату допомоги на поховання, тис грн</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="vdp" value="<%= vdp %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>S Ввтг - витрати на виплату пенсій у разі втрати годувальника, тис грн</label>
+                                <input type="number" min="0"  step="any" class="form-control" name="vvtg" value="<%= vvtg %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            Нр = <%= nr %> тис грн, розмір збитків від втрати життя та здоров'я населення
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="max-width: 500px; margin: 0 auto;">
+                    <img src="../../../img/unf_formula.png" alt="table">
+                </div>
+                <div class="card">
+                    <h3 class="card-header">
+                        Розрахунок втрат від вибуття трудових ресурсів з виробництва
+                    </h3>
+                    <div class="card-body">
+                        <div style="white-space-collapse: preserve; text-align: center">S Втрр = МлN + МтN + МіN + МзN</div>
+                        <div>N - кількість постраждалих від конкретного виду нещасного
+                        випадку</div>
+                        <div class="row">
+                            <div class="form-group d-none">
+                                <label>Concentratiod id:</label>
+                                <input type="number" min="0" max="9999" step="any" class="form-control" name="id"
+                                    value="<%= concentration_id %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мл - втрати від легкого нещасного випадку, введіть N</label>
+                                <input type="number" min="0" step="any" class="form-control" name="ml" value="<%= ml %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мт - втрати від тяжкого нещасного випадку, введіть N</label>
+                                <input type="number" min="0" step="any" class="form-control" name="mt" value="<%= mt %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мі - втрати від отримання людиною інвалідності, введіть N</label>
+                                <input type="number" min="0" step="any" class="form-control" name="mi" value="<%= mi %>" autocomplete="off">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Мз - втрати від загибелі людини, введіть N</label>
+                                <input type="number" min="0" step="any" class="form-control" name="mz" value="<%= mz %>"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info mt-3" value="Calculate" />
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-2" role="alert">
+                            S Втрр = <%= vtrr %> тис грн, втрати від вибуття трудових ресурсів з виробництва
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <%- include('../../partials/footer'); %>
+
+</body>
+
+</html>

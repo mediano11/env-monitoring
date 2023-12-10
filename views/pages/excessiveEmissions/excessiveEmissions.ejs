@@ -14,7 +14,7 @@
         </a>
         <section class="content">
             <h1 class="py-3">
-                Calculate loss for <%= pollutant_name %> | <%= object_name %>
+                Calculate excessive emissions for <%= pollutant_name %> | <%= object_name %>
             </h1>
             <div class="box box-primary" style="margin:5px;padding:5px;">
                 <div class="box-body">
@@ -34,23 +34,23 @@
                                 <tr>
                                     <td>
                                         <p><%= mass %> т</p>
-                                        <a href="/concentrations/<%= concentration_id %>/calculate_loss/mass">Calulate loss</a>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_excessive_emission/mass">Calculate</a>
                                     </td>
                                     <td>
                                         <p><%= a %></p>
-                                        <a href="/concentrations/<%= concentration_id %>/calculate_loss/a">Calulate loss</a>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_excessive_emission/a">Calculate</a>
                                     </td>
                                     <td>
                                         <p><%= kt %></p>
-                                        <a href="/concentrations/<%= concentration_id %>/calculate_loss/kt">Calulate loss</a>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_excessive_emission/kt">Calculate</a>
                                     </td>
                                     <td>
                                         <p><%= kzi %></p>
-                                        <a href="/concentrations/<%= concentration_id %>/calculate_loss/kzi">Calulate loss</a>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_excessive_emission/kzi">Calculate</a>
                                     </td>
                                     <td>
                                         <p><%= z %> грн</p>
-                                        <a href="/concentrations/<%= concentration_id %>/calculate_loss/z">Calulate loss</a>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_excessive_emission/z">Calculate</a>
                                     </td>
                                 </tr>
                             </tbody>

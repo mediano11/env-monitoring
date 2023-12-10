@@ -6,7 +6,8 @@ const PollutantController = require("./controllers/PollutantController.js");
 const PollutionController = require("./controllers/PollutionController.js");
 const ConcentrationController = require("./controllers/ConcentrationController.js");
 const RiskController = require("./controllers/RiskController.js");
-const LossController = require("./controllers/LossController.js");
+const ExcessiveEmissionController = require("./controllers/ExcessiveEmissionController.js");
+const EmergenceController = require("./controllers/EmergenceController.js");
 const UploadController = require("./controllers/UploadController.js");
 
 //index
@@ -66,18 +67,33 @@ router.post('/concentrations/:id/calculate_risk/pcr', RiskController.calculateRi
 router.get('/concentrations/:id/calculate_risk/hq', RiskController.getRiskHq);
 router.post('/concentrations/:id/calculate_risk/hq', RiskController.calculateRiskHq);
 
-//losses
-router.get('/concentrations/:id/losses', LossController.getLoss);
-router.get('/concentrations/:id/calculate_loss/mass', LossController.getLossMass);
-router.post('/concentrations/:id/calculate_loss/mass', LossController.calculateLossMass);
-router.get('/concentrations/:id/calculate_loss/a', LossController.getLossA);
-router.post('/concentrations/:id/calculate_loss/a', LossController.calculateLossA);
-router.get('/concentrations/:id/calculate_loss/kt', LossController.getLossKt);
-router.post('/concentrations/:id/calculate_loss/kt', LossController.calculateLossKt);
-router.get('/concentrations/:id/calculate_loss/kzi', LossController.getLossKzi);
-router.post('/concentrations/:id/calculate_loss/kzi', LossController.calculateLossKzi);
-router.get('/concentrations/:id/calculate_loss/z', LossController.getLossZ);
-router.post('/concentrations/:id/calculate_loss/z', LossController.calculateLossZ);
+//excessive_emission
+router.get('/emergencies/:id/excessive_emission', ExcessiveEmissionController.getExcessiveEmission);
+router.get('/emergencies/:id/calculate_excessive_emission/mass', ExcessiveEmissionController.getExcessiveEmissionMass);
+router.post('/emergencies/:id/calculate_excessive_emission/mass', ExcessiveEmissionController.calculateExcessiveEmissionMass);
+router.get('/emergencies/:id/calculate_excessive_emission/a', ExcessiveEmissionController.getExcessiveEmissionA);
+router.post('/emergencies/:id/calculate_excessive_emission/a', ExcessiveEmissionController.calculateExcessiveEmissionA);
+router.get('/emergencies/:id/calculate_excessive_emission/kt', ExcessiveEmissionController.getExcessiveEmissionKt);
+router.post('/emergencies/:id/calculate_excessive_emission/kt', ExcessiveEmissionController.calculateExcessiveEmissionKt);
+router.get('/emergencies/:id/calculate_excessive_emission/kzi', ExcessiveEmissionController.getExcessiveEmissionKzi);
+router.post('/emergencies/:id/calculate_excessive_emission/kzi', ExcessiveEmissionController.calculateExcessiveEmissionKzi);
+router.get('/emergencies/:id/calculate_excessive_emission/z', ExcessiveEmissionController.getExcessiveEmissionZ);
+router.post('/emergencies/:id/calculate_excessive_emission/z', ExcessiveEmissionController.calculateExcessiveEmissionZ);
+
+//emergencies
+router.get('/emergencies/:id', EmergenceController.getEmergencies);
+router.get('/emergencies/:id/calculate_af', EmergenceController.getEmergencyAf);
+router.post('/emergencies/:id/calculate_af', EmergenceController.calculateEmergencyAf);
+router.get('/emergencies/:id/calculate_zns', EmergenceController.getEmergencyZns);
+router.post('/emergencies/:id/calculate_zns', EmergenceController.calculateEmergencyZns);
+router.get('/emergencies/:id/calculate_mr', EmergenceController.getEmergencyMr);
+router.post('/emergencies/:id/calculate_mr', EmergenceController.calculateEmergencyMr);
+router.get('/emergencies/:id/calculate_nr', EmergenceController.getEmergencyNr);
+router.post('/emergencies/:id/calculate_nr', EmergenceController.calculateEmergencyNr);
+router.get('/emergencies/:id/calculate_zf', EmergenceController.getEmergencyZf);
+router.post('/emergencies/:id/calculate_zf', EmergenceController.calculateEmergencyZf);
+router.get('/emergencies/:id/calculate_total', EmergenceController.getEmergencyTotal);
+router.post('/emergencies/:id/calculate_total', EmergenceController.calculateEmergencyTotal);
 
 //upload
 router.get("/upload",UploadController.uploadExcel)

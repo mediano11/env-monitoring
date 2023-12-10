@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body>
+
+    <%- include('../../partials/header'); %>
+
+    <main class="container">
+        <a href="/emergencies" class="btn btn-outline-info my-3">
+            Go back
+        </a>
+        <section class="content">
+            <h1 class="py-3">
+                Оцінка збитків від наслідків надзвичайних ситуацій техногенного та природного характеру для <%= pollutant_name %> | <%= object_name %>
+            </h1>
+            <div class="box box-primary" style="margin:5px;padding:5px;">
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th>N</th>
+                                    <th>Вид збитків</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Розмір відшкодування збитків за наднормативні викиди забруднюючих речовин в атмосферне повітря</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/excessive_emission">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Розрахунок збитків від забруднення
+                                    атмосферного повітря</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_af">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Збитки від наднормативного скидання забруднених стоків,
+                                    викликаних надзвичайними ситуацій</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_zns">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Розрахунок збитків від забруднення земель
+                                    несільськогосподарського призначення</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_zf">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Розрахунок збитків від руйнування та пошкодження
+                                    основних фондів, знищення майна та продукції</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_mr">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Розрахунок збитків від втрати життя та
+                                    здоров'я населення</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_nr">Підрахувати</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Загальний обсяг збитків від наслідків надзвичайних ситуацій</td>
+                                    <td>
+                                        <a href="/emergencies/<%= concentration_id %>/calculate_total">Підрахувати</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <%- include('../../partials/footer'); %>
+    
+
+</body>
+
+</html>
